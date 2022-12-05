@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3809751 */
-  src: url('iconfont.woff2?t=1670230964705') format('woff2'),
-       url('iconfont.woff?t=1670230964705') format('woff'),
-       url('iconfont.ttf?t=1670230964705') format('truetype');
+  src: url('iconfont.woff2?t=1670234296777') format('woff2'),
+       url('iconfont.woff?t=1670234296777') format('woff'),
+       url('iconfont.ttf?t=1670234296777') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tabs:before {
+  content: "\e618";
 }
 
 .icon-rongqi:before {

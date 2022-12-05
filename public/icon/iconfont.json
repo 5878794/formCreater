@@ -1,0 +1,114 @@
+{
+  "id": "3809751",
+  "name": "formCreate",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13990885",
+      "name": "tabs",
+      "font_class": "tabs",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "12975237",
+      "name": "容器",
+      "font_class": "rongqi",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "1766506",
+      "name": "符号-下拉单选",
+      "font_class": "xialadanxuan",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "355548",
+      "name": "img",
+      "font_class": "img",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "499170",
+      "name": "date",
+      "font_class": "date",
+      "unicode": "e91c",
+      "unicode_decimal": 59676
+    },
+    {
+      "icon_id": "1305400",
+      "name": "结构设计",
+      "font_class": "jiegousheji",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "1416446",
+      "name": "color-filling",
+      "font_class": "color-filling",
+      "unicode": "e7cd",
+      "unicode_decimal": 59341
+    },
+    {
+      "icon_id": "6151253",
+      "name": "file",
+      "font_class": "file",
+      "unicode": "e809",
+      "unicode_decimal": 59401
+    },
+    {
+      "icon_id": "6664173",
+      "name": "input",
+      "font_class": "input",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "7684753",
+      "name": "date_time",
+      "font_class": "date_time",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "10793064",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "11121438",
+      "name": "组件",
+      "font_class": "zujian",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "15838489",
+      "name": "import",
+      "font_class": "import",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "15838540",
+      "name": "time",
+      "font_class": "time",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "18442545",
+      "name": "repeat",
+      "font_class": "repeat",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
