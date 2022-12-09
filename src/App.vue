@@ -1,18 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <form-create/>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import HelloWorld from './components/HelloWorld.vue'
+import formCreate from './components/formCreate/index'
 
 @Options({
   components: {
-    HelloWorld
+    formCreate
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+}
 </script>
 
 <style>
@@ -20,5 +20,10 @@ export default class App extends Vue {}
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:global(#app) {
+  width: 100vw;
+  height: 100vh;
 }
 </style>
