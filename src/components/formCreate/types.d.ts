@@ -1,9 +1,9 @@
 type inputs = 'group' | 'input' | 'select' | 'radio' | 'password' | 'dateTime' | 'date' |
-  'time' | 'color' | 'imgFile' | 'file' | 'repeat' | 'component' | null;
+  'time' | 'color' | 'imgFile' | 'file' | 'repeat' | 'component' | '';
 
 interface dragObjType {
   type: inputs,
-  desc: string,
+  desc?: string,
   icon?: string
 }
 

@@ -4,19 +4,22 @@ import appStyle from './css/index.module.scss'
 import boxStyle from './css/box.module.scss'
 import bIcon from './publishCom/icon'
 import { inputs } from './setting'
-import { dragStartObj } from './cache'
 import { dragObjType } from './types'
+import { dragInputType } from '@/components/formCreate/cache'
 
 export default defineComponent({
   setup (props, { expose }) {
-    const dragstartFn = (rs: dragObjType) => {
-      dragStartObj.type = rs.type
-      dragStartObj.desc = rs.desc
+    const dragstartFn = (rs: dragObjType, e: DragEvent) => {
+      e.dataTransfer!.setData('type', rs.type)
+      dragInputType.value = rs.type
+    }
+    const dragEndFn = () => {
+      dragInputType.value = ''
     }
 
     expose({})
     return {
-      dragstartFn
+      dragstartFn, dragEndFn
     }
   },
   render () {
@@ -25,9 +28,10 @@ export default defineComponent({
         const tag = bIcon
         return <>
           <tag
-            onDragstart={() => {
-              this.dragstartFn(rs)
+            onDragstart={(e: DragEvent) => {
+              this.dragstartFn(rs, e)
             }}
+            onDragend={this.dragEndFn}
             draggable="true"
             title={rs.desc}
             src={rs.icon}

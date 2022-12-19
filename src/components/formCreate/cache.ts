@@ -1,11 +1,7 @@
-import { reactive, ref } from 'vue'
-import { dragObjType } from './types'
+import { ref } from 'vue'
 
-const dragStartObj = reactive<dragObjType>({
-  type: null,
-  desc: ''
-})
+const dragInputType = ref('')
 
 export {
-  dragStartObj
+  dragInputType
 }

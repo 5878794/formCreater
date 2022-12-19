@@ -50,3 +50,11 @@
     bottom: 0;
     background: #795da3;
 }
+
+//TODO
+.main_pointer_none *:not(span) {
+    pointer-events: none;
+    color: red;
+}
+
+
