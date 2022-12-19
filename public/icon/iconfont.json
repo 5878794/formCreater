@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15188534",
+      "name": "radio-button",
+      "font_class": "radio-button",
+      "unicode": "e710",
+      "unicode_decimal": 59152
+    },
+    {
       "icon_id": "13990885",
       "name": "tabs",
       "font_class": "tabs",

@@ -15,12 +15,12 @@ export default defineComponent({
   },
   render () {
     return <>
-            <div class={appStyle.container}>
-                <fileInfo/>
-                <mainContainer/>
-                <props/>
-                <inputs/>
-            </div>
-        </>
+      <div class={[appStyle.container, 'container']}>
+        <fileInfo/>
+        <mainContainer/>
+        <props/>
+        <inputs/>
+      </div>
+    </>
   }
 })

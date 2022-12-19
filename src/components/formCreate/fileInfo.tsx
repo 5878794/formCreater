@@ -5,7 +5,7 @@ import boxStyle from './css/box.module.scss'
 export default defineComponent({
   render () {
     return <>
-            <div class={[boxStyle.box_slt, appStyle.fileInfo]}>fileInfo</div>
-        </>
+      <div class={[boxStyle.box_slt, appStyle.fileInfo, 'fileInfo']}>fileInfo</div>
+    </>
   }
 })
