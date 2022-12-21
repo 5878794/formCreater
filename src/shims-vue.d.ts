@@ -4,6 +4,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
+declare module 'lodash'
 declare module '*.module.scss';
 declare module "*.png"

@@ -1,0 +1,22 @@
+
+.input_item {
+    width: 100%;
+
+    :global {
+        .el-form-item {
+            width: 100%;
+        }
+
+        //.el-form-item__content {
+        //    flex: 1 1 0 !important;
+        //    display: flex;
+        //    flex-direction: row;
+        //    align-items: center;
+        //    justify-content: flex-start;
+        //}
+    }
+
+    .unit {
+        min-width: 80px;
+    }
+}
