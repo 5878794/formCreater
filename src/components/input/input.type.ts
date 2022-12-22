@@ -12,7 +12,7 @@ export interface uploadRsType {
   name: string
 }
 
-export interface valueObjType {
+export interface inputValueObjType {
   value: any
 }
 
@@ -46,4 +46,9 @@ export interface formItemType {
   uploadFn: (file: File) => Promise<uploadRsType>, // file、img 上传时执行
   changeFn: (value: any, formObj: any, formData: any) => void, // 值变化时执行
   setupFn: (prop: formItemType) => Promise<any> // 初始执行
+}
+
+export interface inputCacheType {
+  param?: formItemType | null,
+  valObj: inputValueObjType
 }
