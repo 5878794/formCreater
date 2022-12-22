@@ -3,7 +3,7 @@
  date:2022/11/3
  */
 
-import { defineComponent, watch, reactive, toRefs } from 'vue'
+import { defineComponent, watch, reactive, toRefs, inject } from 'vue'
 import { inputCacheType } from './input.type'
 import inputStyle from './css/inputStyle.module.scss'
 import 'element-plus/dist/index.css'
@@ -12,7 +12,8 @@ import init from './fn/init'
 import { ElFormItem } from 'element-plus'
 import boxStyle from '@/components/input/css/box.module.scss'
 
-import createDomFn from './fn/createDom'
+import createInputFn from './fn/createInput'
+import createDivFn from './fn/createDiv'
 import createUnitFn from './fn/createUnit'
 
 export default defineComponent({
@@ -24,6 +25,7 @@ export default defineComponent({
   },
   setup (props, { emit, expose }) {
     console.log('setup input')
+    const formObj: any = inject('formObj')
     const cache = reactive<inputCacheType>({
       param: null,
       valObj: { value: '' }
@@ -36,7 +38,8 @@ export default defineComponent({
       watchFn()
     })
 
-    const { createDiv, createInput } = createDomFn(cache)
+    const { createInput } = createInputFn(cache, formObj.proxy)
+    const { createDiv } = createDivFn(cache)
     const { createUnit } = createUnitFn(cache)
 
     expose({})

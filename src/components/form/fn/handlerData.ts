@@ -9,6 +9,11 @@ const handlerData = (setting: formItemType[]) => {
     // eslint-disable-next-line array-callback-return
     settings.map((item: formItemType) => {
       item.__id__ = guid()
+      item.disabled = item.disabled ? item.disabled : false
+      item.ruleFn = item.ruleFn || function () {
+        return { pass: true }
+      }
+
       if (item.children && item.children.length > 0) {
         fn(item.children)
       }

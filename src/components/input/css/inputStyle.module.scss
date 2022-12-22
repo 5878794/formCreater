@@ -1,6 +1,7 @@
 
 .input_item {
     width: 100%;
+    margin-bottom: 20px;
 
     :global {
         .el-form-item {
@@ -13,6 +14,10 @@
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
+        }
+
+        .el-input {
+            flex: 1 1 0 !important;
         }
     }
 

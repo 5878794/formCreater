@@ -9,7 +9,16 @@ const setting = [
     disabled: '',
     placeholder: '',
     unit: 'mhz',
-    unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }]
+    unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
+    ruleFn (val: any, formData: any) {
+      console.log('check fn')
+      console.log(val, formData)
+
+      return {
+        pass: (parseFloat(val) > 10),
+        msg: '未通过'
+      }
+    }
   },
   {
     type: 'select',

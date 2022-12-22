@@ -1,4 +1,4 @@
-import { defineComponent, reactive, toRefs, watch } from 'vue'
+import { defineComponent, getCurrentInstance, provide, reactive, toRefs, watch } from 'vue'
 import myInput from '../input/index'
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
@@ -19,6 +19,9 @@ export default defineComponent({
     id: { type: String, default: '' }
   },
   setup (props, { expose }) {
+    const root = getCurrentInstance()
+    provide('formObj', root)
+
     const cache = reactive({ data: [] })
     cache.data = handlerData(props.formSetting as formItemType[])
 
@@ -27,8 +30,32 @@ export default defineComponent({
       cache.data = handlerData(props.formSetting as formItemType[])
     })
 
+    const getData = () => {
+      return { a: 1, b: 2 }
+    }
+    const checkForm = () => {
+      return {
+        pass: true,
+        msg: ''
+      }
+    }
+    const find = () => {
+      return ''
+    }
+    const checkAndGetData = () => {
+      return {
+        pass: true,
+        data: { a: 1, b: 2 }
+      }
+    }
+
+    expose({ getData, checkForm, find, checkAndGetData })
     return {
-      ...toRefs(cache)
+      ...toRefs(cache),
+      getData,
+      checkForm,
+      find,
+      checkAndGetData
     }
   },
   render () {
