@@ -1,6 +1,7 @@
 import { defineComponent, getCurrentInstance, inject, provide, reactive, toRefs, watch } from 'vue'
 import myInput from '../input/index'
 import formStyle from './css/formStyle.module.scss'
+import { formItemType } from '@/components/input/input.type'
 
 export default defineComponent({
   name: 'bFrom',
@@ -62,31 +63,39 @@ export default defineComponent({
             labelWidth={this.labelWidth}
             propData={item}
             serverData={data}
+            data-key-lv={item.__keyLv__}
           ></my-input>
         }
         case 'group': {
           const key = item.key
           const data = (key) ? serverData[key] : serverData
-          return <div style={item.style}>
+          return <div
+            style={item.style}
+            id={item.__id__}
+            data-key-lv={item.__keyLv__}
+          >
             {item.label && <p>{item.label}</p>}
             {/* 没有key的时候下面的子集当成平级元素渲染 */}
             {!key && item.children && createList(item.children, data)}
             {/* 有key的时候当成另一个form渲染 */}
-            <b-from
-              ref={item.__id__}
-              key={item.__id__}
-              id={item.__id__}
-              formSetting={item.children}
-              serverData={data}
-              labelWidth={this.labelWidth}
-              canMdf={this.canMdf}
-            ></b-from>
+            {key && item.children && createGroup(item, data)}
           </div>
         }
         default:
           console.error(type + ' 不存在！')
           return null
       }
+    }
+
+    const createGroup = (item: formItemType, data: any) => {
+      return <b-from
+        ref={item.__id__}
+        key={item.__id__}
+        formSetting={item.children}
+        serverData={data}
+        labelWidth={this.labelWidth}
+        canMdf={this.canMdf}
+      ></b-from>
     }
 
     const createList = (settings: any, serverData: any) => {
