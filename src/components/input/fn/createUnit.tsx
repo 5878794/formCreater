@@ -1,7 +1,7 @@
 import { ElSelect, ElOption } from 'element-plus'
-import { formItemType, inputValueObjType, unitValueObjType, selectItemType, inputCacheType } from '../input.type'
+import { selectItemType, inputCacheType } from '../input.type'
 import inputStyle from '../css/inputStyle.module.scss'
-import { reactive } from 'vue'
+import boxStyle from '../css/box.module.scss'
 
 export default function (cache: inputCacheType) {
   const createUnit = () => {
@@ -20,14 +20,14 @@ export default function (cache: inputCacheType) {
   }
 
   const createUnitText = () => {
-    return <div class={['unitText', inputStyle.unit]}>{cache.param!.unit}</div>
+    return <div class={['unitText', boxStyle.box_hcc, inputStyle.textUnit]}>{cache.param!.unit}</div>
   }
 
   const createUnitSelect = () => {
     const tag = ElSelect
     return <tag
       size="default"
-      class={[inputStyle.unit, 'unitText']}
+      class={[inputStyle.selectUnit, 'selectUnit']}
       v-model={cache.param!.unitValObj!.value}
       multiple={false}
       onChange={function () {

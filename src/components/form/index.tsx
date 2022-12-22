@@ -2,6 +2,7 @@ import { defineComponent, reactive, toRefs, watch } from 'vue'
 import myInput from '../input/index'
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
+import formStyle from './css/formStyle.module.scss'
 
 export default defineComponent({
   name: 'bFrom',
@@ -43,6 +44,7 @@ export default defineComponent({
             ref={item.__id__}
             key={item.__id__}
             id={item.__id__}
+            style={item.style}
             canMdf={this.canMdf}
             labelWidth={this.labelWidth}
             propData={item}
@@ -52,7 +54,7 @@ export default defineComponent({
         case 'group': {
           const key = item.key
           const data = (key) ? serverData[key] : serverData
-          return <div>
+          return <div style={item.style}>
             {item.label && <p>{item.label}</p>}
             {/* 没有key的时候下面的子集当成平级元素渲染 */}
             {!key && item.children && createList(item.children, data)}
@@ -81,8 +83,8 @@ export default defineComponent({
       })
     }
 
-    return <>
+    return <div class={[formStyle.form_item, '__form__']}>
       {createList(this.data, this.serverData)}
-    </>
+    </div>
   }
 })

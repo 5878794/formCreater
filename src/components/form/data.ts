@@ -4,7 +4,7 @@ const setting = [
     label: 'test',
     key: 'a',
     value: 'a',
-    style: '',
+    style: 'width:410px;',
     labelWidth: '',
     disabled: '',
     placeholder: '',
@@ -26,6 +26,7 @@ const setting = [
     type: 'group',
     label: 'group',
     key: 'group',
+    style: 'width:100%;border:1px solid #ccc; padding:10px;',
     children: [
       {
         type: 'text',
@@ -36,7 +37,7 @@ const setting = [
         labelWidth: '',
         disabled: '',
         placeholder: '',
-        unit: '',
+        unit: 'km',
         unitOption: []
       }
     ]
