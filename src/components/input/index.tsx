@@ -15,6 +15,7 @@ import boxStyle from '@/components/input/css/box.module.scss'
 import createInputFn from './fn/createInput'
 import createDivFn from './fn/createDiv'
 import createUnitFn from './fn/createUnit'
+import createCheckFiledFn from './fn/createCheckFiled'
 
 export default defineComponent({
   props: {
@@ -38,7 +39,8 @@ export default defineComponent({
       watchFn()
     })
 
-    const { createInput } = createInputFn(cache, formObj.proxy)
+    const { checkFiled } = createCheckFiledFn(cache, formObj.proxy)
+    const { createInput } = createInputFn(cache, checkFiled)
     const { createDiv } = createDivFn(cache)
     const { createUnit } = createUnitFn(cache)
 

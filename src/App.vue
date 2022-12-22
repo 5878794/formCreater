@@ -8,7 +8,7 @@
 import { defineComponent, ref } from 'vue'
 // import formCreate from './components/formCreate/index'
 import myForm from './components/form/index'
-import { data, setting } from './components/form/data'
+import { data, setting } from './data'
 
 // @Options({
 //   components: {

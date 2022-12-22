@@ -8,13 +8,13 @@ const inputs: any = {
 }
 
 // 创建各种输入框
-export default function (cache: inputCacheType, formObj: any) {
+export default function (cache: inputCacheType, checkFiled: any) {
   const createInput = () => {
     const type = cache.param!.type
     if (inputs[type]) {
-      return inputs[type](cache, formObj)
+      return inputs[type](cache, checkFiled)
     } else {
-      console.log('input类型未找到：' + type)
+      console.error('input类型未找到：' + type)
       return null
     }
   }
