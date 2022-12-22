@@ -16,6 +16,7 @@ import createInputFn from './fn/createInput'
 import createDivFn from './fn/createDiv'
 import createUnitFn from './fn/createUnit'
 import createCheckFiledFn from './fn/createCheckFiled'
+import createChangeFn from './fn/createChangeFn'
 
 export default defineComponent({
   props: {
@@ -26,22 +27,25 @@ export default defineComponent({
   },
   setup (props, { emit, expose }) {
     console.log('setup input')
-    const formObj: any = inject('formObj')
+    const root: any = inject('root')
     const cache = reactive<inputCacheType>({
       param: null,
       valObj: { value: '' }
     })
 
     // 初始化
-    const { initFn, watchFn } = init(props, cache)
+    const { initFn } = init(props, cache)
     initFn()
-    watch(() => props.serverData, () => {
-      watchFn()
-    })
 
-    const { checkFiled } = createCheckFiledFn(cache, formObj.proxy)
+    // 创建数据变化触发函数
+    createChangeFn(cache, root.proxy)
+    // 创建验证函数
+    const { checkFiled } = createCheckFiledFn(cache, root.proxy)
+    // 创建输入框函数
     const { createInput } = createInputFn(cache, checkFiled)
+    // 创建非编辑状态时的div
     const { createDiv } = createDivFn(cache)
+    // 创建单位
     const { createUnit } = createUnitFn(cache)
 
     expose({})

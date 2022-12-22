@@ -23,6 +23,7 @@ export interface unitValueObjType {
 
 export interface formItemType {
   __id__?: string,
+  __keyLv__?: string, // key的层级 中间用.分隔
   children?: formItemType[],
   type: 'text' | 'password' | 'select' | 'radio' | 'checkbox' | 'color' |
     'button' | 'date' | 'time' | 'dateTime' | 'file' | 'img' | 'password' |

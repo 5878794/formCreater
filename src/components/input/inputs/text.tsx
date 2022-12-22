@@ -7,6 +7,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
   return (
     <tag
       onblur={function () {
+        console.log('blur')
         checkFiled()
       }}
       v-model={cache.valObj.value}

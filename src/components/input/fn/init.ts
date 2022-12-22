@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash'
 import { inputCacheType, selectItemType } from '../input.type'
+import { watch } from 'vue'
 
 export default function (props: any, cache: inputCacheType) {
   // 单位对象的处理  并添加到prop中
@@ -38,9 +39,9 @@ export default function (props: any, cache: inputCacheType) {
     createValObj()
   }
 
-  const watchFn = () => {
+  watch(() => props.serverData, () => {
     changeValObj()
-  }
+  })
 
-  return { initFn, watchFn }
+  return { initFn }
 }
