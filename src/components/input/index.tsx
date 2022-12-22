@@ -18,7 +18,7 @@ export default defineComponent({
     canMdf: { type: Boolean, default: true }
   },
   setup (props, { emit }) {
-    // 测试刷新机制 TODO
+    console.log('setup input')
     const cache = reactive<{
       thisProp: formItemType | null,
       valObj: any
@@ -74,6 +74,7 @@ export default defineComponent({
     }
   },
   render () {
+    console.log('render input')
     return <div
       class={['input_item', inputStyle.input_item]}
       style={this.thisProp!.style}

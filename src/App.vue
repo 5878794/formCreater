@@ -22,12 +22,15 @@ export default defineComponent({
   components: { myForm },
   setup () {
     const dataRef = ref<any>({})
-    const settingRef = ref<any>([setting[0]])
+    const settingRef = ref<any>([JSON.parse(JSON.stringify(setting[0]))])
+
+    setTimeout(() => {
+      settingRef.value = setting
+    }, 2000)
 
     setTimeout(() => {
       dataRef.value = data
-      settingRef.value = setting
-    }, 2000)
+    }, 4000)
 
     return {
       dataRef, settingRef

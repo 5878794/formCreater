@@ -22,6 +22,8 @@ export interface unitValueObjType {
 }
 
 export interface formItemType {
+  __id__?: string,
+  children?: formItemType[],
   type: 'text' | 'password' | 'select' | 'radio' | 'checkbox' | 'color' |
     'button' | 'date' | 'time' | 'dateTime' | 'file' | 'img' | 'password' |
     'repeat' | 'table' | 'customCom' | 'group',
