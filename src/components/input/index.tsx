@@ -30,7 +30,7 @@ export default defineComponent({
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
       param: null,
-      valObj: { value: '' }
+      valObj: { value: '', oldValue: '' }
     })
 
     // 初始化

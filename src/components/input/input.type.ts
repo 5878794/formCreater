@@ -13,7 +13,8 @@ export interface uploadRsType {
 }
 
 export interface inputValueObjType {
-  value: any
+  value: any,
+  oldValue?: any
 }
 
 export interface unitValueObjType {

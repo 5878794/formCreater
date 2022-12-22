@@ -19,9 +19,11 @@ export default function (props: any, cache: inputCacheType) {
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
     cache.valObj.value = props.serverData || cache.param!.value
+    cache.valObj.oldValue = props.serverData || cache.param!.value
   }
   const changeValObj = () => {
     cache.valObj.value = props.serverData || cache.valObj.value
+    cache.valObj.oldValue = props.serverData || cache.valObj.value
   }
 
   const handlerPropObj = () => {

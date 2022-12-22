@@ -10,9 +10,9 @@ export default function (cache: inputCacheType, formObj: any) {
 
     if (!rs.pass) {
       cache.param!.errMsg = rs.msg
+    } else {
+      cache.valObj.oldValue = val
     }
-
-    // TODO change事件
   }
 
   return { checkFiled }
