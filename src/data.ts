@@ -32,6 +32,22 @@ const setting = [
     options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }]
   },
   {
+    type: 'color',
+    label: 'test',
+    key: 'c',
+    value: '#ccc',
+    style: '',
+    labelWidth: ''
+  },
+  {
+    type: 'date',
+    label: 'test',
+    key: 'd',
+    value: '1671862422033',
+    style: '',
+    labelWidth: ''
+  },
+  {
     type: 'group',
     label: 'group',
     key: 'group',

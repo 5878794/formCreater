@@ -12,6 +12,7 @@ import init from './fn/init'
 import { ElFormItem } from 'element-plus'
 import boxStyle from '@/components/input/css/box.module.scss'
 
+import changeDataType from './fn/changeDataType'
 import createInputFn from './fn/createInput'
 import createDivFn from './fn/createDiv'
 import createUnitFn from './fn/createUnit'
@@ -32,8 +33,11 @@ export default defineComponent({
       valObj: { value: '', oldValue: '' }
     })
 
+    // 数据格式转换函数
+    const dataChangeFn = changeDataType(props.propData.type)
+
     // 初始化
-    const { initFn } = init(props, cache)
+    const { initFn } = init(props, cache, dataChangeFn)
     initFn()
 
     // 创建数据变化触发函数

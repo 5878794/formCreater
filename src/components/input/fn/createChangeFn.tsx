@@ -6,6 +6,7 @@ export default function (cache: inputCacheType, root: any) {
   watch(() => cache.valObj.oldValue, () => {
     const id = cache.param?.__keyLv__
     if (root && root.proxy && root.proxy.changeFn) {
+      console.log(cache.valObj.oldValue)
       root.proxy.changeFn(id)
     }
   })

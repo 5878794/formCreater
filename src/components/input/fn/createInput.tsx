@@ -3,9 +3,11 @@ import boxStyle from '../css/box.module.scss'
 
 import text from '../inputs/text'
 import select from '../inputs/select'
+import color from '../inputs/color'
+import date from '../inputs/date'
 
 const inputs: any = {
-  text, select
+  text, select, color, date
 }
 
 // 创建各种输入框

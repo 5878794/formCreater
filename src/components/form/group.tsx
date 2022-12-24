@@ -52,6 +52,8 @@ export default defineComponent({
 
       switch (type) {
         case 'text':
+        case 'color':
+        case 'date':
         case 'select': {
           const data = serverData[item.key]
           return <my-input

@@ -2,7 +2,7 @@ import { cloneDeep } from 'lodash'
 import { inputCacheType, selectItemType } from '../input.type'
 import { watch } from 'vue'
 
-export default function (props: any, cache: inputCacheType) {
+export default function (props: any, cache: inputCacheType, dataChangeFn:any) {
   // 单位对象的处理  并添加到prop中
   const createUnitObj = () => {
     if (props.propData.unit && props.propData.unitOption && props.propData.unitOption.length > 0) {
@@ -18,12 +18,14 @@ export default function (props: any, cache: inputCacheType) {
 
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
-    cache.valObj.value = props.serverData || cache.param!.value
-    cache.valObj.oldValue = props.serverData || cache.param!.value
+    const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
+    cache.valObj.value = val
+    cache.valObj.oldValue = val
   }
   const changeValObj = () => {
-    cache.valObj.value = props.serverData || cache.valObj.value
-    cache.valObj.oldValue = props.serverData || cache.valObj.value
+    const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.valObj.value)
+    cache.valObj.value = val
+    cache.valObj.oldValue = val
   }
 
   const handlerPropObj = () => {

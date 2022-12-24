@@ -16,9 +16,10 @@
             justify-content: flex-start;
         }
 
-        .el-input {
+        .el-input,.el-select {
             flex: 1 1 0 !important;
         }
+
     }
 
     .textUnit {
