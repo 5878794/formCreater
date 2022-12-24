@@ -26,7 +26,6 @@ export default defineComponent({
     canMdf: { type: Boolean, default: true }
   },
   setup (props, { emit, expose }) {
-    console.log('setup input')
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
       param: null,
@@ -38,9 +37,9 @@ export default defineComponent({
     initFn()
 
     // 创建数据变化触发函数
-    createChangeFn(cache, root.proxy)
+    createChangeFn(cache, root)
     // 创建验证函数
-    const { checkFiled } = createCheckFiledFn(cache, root.proxy)
+    const { checkFiled } = createCheckFiledFn(cache, root)
     // 创建输入框函数
     const { createInput } = createInputFn(cache, checkFiled)
     // 创建非编辑状态时的div
@@ -68,7 +67,7 @@ export default defineComponent({
         label-width={this.param!.labelWidth}
         label={this.param!.label}
         prop={this.param!.key}
-        className={[boxStyle.box_hlc]}
+        class={[boxStyle.box_hlc]}
       >
         {this.canMdf && this.createInput()}
         {this.canMdf && this.createUnit()}

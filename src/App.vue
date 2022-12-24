@@ -1,6 +1,7 @@
 <template>
   <!--  <form-create/>-->
-  <my-form :serverData="dataRef" :formSetting="settingRef"/>
+<!--  <my-form :serverData="dataRef" :formSetting="settingRef"/>-->
+  <b-input :propData="tempData"></b-input>
 </template>
 
 <script lang="ts">
@@ -9,6 +10,7 @@ import { defineComponent, ref } from 'vue'
 // import formCreate from './components/formCreate/index'
 import myForm from './components/form/index'
 import { data, setting } from './data'
+import bInput from './components/input/index'
 
 // @Options({
 //   components: {
@@ -19,7 +21,7 @@ import { data, setting } from './data'
 // export default class App extends Vue {
 // }
 export default defineComponent({
-  components: { myForm },
+  components: { myForm, bInput },
   setup () {
     const dataRef = ref<any>({})
     const settingRef = ref<any>([JSON.parse(JSON.stringify(setting[0]))])
@@ -32,8 +34,29 @@ export default defineComponent({
       dataRef.value = data
     }, 4000)
 
+    const tempData = {
+      type: 'text',
+      label: 'test',
+      key: 'a',
+      value: 'a',
+      style: 'width:410px;',
+      labelWidth: '',
+      placeholder: '',
+      unit: 'mhz',
+      unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
+      ruleFn (val: any, formData: any) {
+        console.log('check fn')
+        console.log(val, formData)
+
+        return {
+          pass: (parseFloat(val) > 10),
+          msg: '未通过'
+        }
+      }
+    }
+
     return {
-      dataRef, settingRef
+      dataRef, settingRef, tempData
     }
   }
 })

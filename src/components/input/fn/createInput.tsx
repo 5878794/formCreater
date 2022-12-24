@@ -9,6 +9,7 @@ const inputs: any = {
 
 // 创建各种输入框
 export default function (cache: inputCacheType, checkFiled: any) {
+  console.log(cache)
   const createInput = () => {
     const type = cache.param!.type
     if (inputs[type]) {

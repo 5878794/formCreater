@@ -5,7 +5,10 @@ export default function (cache: inputCacheType, formObj: any) {
     cache.param!.errMsg = ''
     const ruleFn = cache.param!.ruleFn
     const val = cache.valObj.value
-    const formData = formObj.getData()
+    let formData:any = {}
+    if (formObj && formObj.proxy && formObj.proxy.getData) {
+      formData = formObj.proxy.getData()
+    }
     const rs = ruleFn(val, formData)
 
     if (!rs.pass) {
