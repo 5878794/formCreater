@@ -1,62 +1,66 @@
 import { ElSelect, ElOption } from 'element-plus'
-import { formItemType, valueObjType, unitValueObjType, selectItemType } from '../input.type'
+import { selectItemType, inputCacheType } from '../input.type'
 import inputStyle from '../css/inputStyle.module.scss'
-import { reactive } from 'vue'
+import boxStyle from '../css/box.module.scss'
 
-const createUnit = (prop: formItemType, valObj: valueObjType) => {
-  const showUnit = prop.unit || ''
-  const dist = prop.unitOption || []
+export default function (cache: inputCacheType) {
+  const createUnit = () => {
+    const showUnit = cache.param!.unit || ''
+    const dist = cache.param!.unitOption || []
 
-  if (!showUnit) {
-    return null
-  }
-
-  if (dist.length === 0) {
-    return createUnitText(showUnit)
-  }
-
-  return createUnitSelect(prop, valObj)
-}
-
-const createUnitText = (showUnit: string) => {
-  return <div class={['unitText', inputStyle.unit]}>{showUnit}</div>
-}
-
-const unitChange = (prop: formItemType, valObj: valueObjType) => {
-  if (valObj.value && !isNaN(valObj.value)) {
-    valObj.value =
-      (parseFloat(valObj.value) *
-        parseFloat(prop.unitValObj!.value) /
-        parseFloat(prop.unitValObj!.oldValue)
-      ).toString()
-  }
-  prop.unitValObj!.oldValue = prop.unitValObj!.value
-}
-
-const createUnitSelect = (prop: formItemType, valObj: valueObjType) => {
-  const tag = ElSelect
-  return <tag
-    size="default"
-    class={[inputStyle.unit, 'unitText']}
-    v-model={prop.unitValObj!.value}
-    multiple={false}
-    onChange={function () {
-      unitChange(prop, valObj)
-    }}
-  >
-    {createUnitOption(prop.unitOption)}
-  </tag>
-}
-
-const createUnitOption = (list: selectItemType[]) => {
-  const tag = ElOption
-  return <>
-    {
-      list.map((rs: selectItemType) => {
-        return <tag label={rs.label} value={rs.value} key={rs.value}></tag>
-      })
+    if (!showUnit) {
+      return null
     }
-  </>
-}
 
-export default createUnit
+    if (dist.length === 0) {
+      return createUnitText()
+    }
+
+    return createUnitSelect()
+  }
+
+  const createUnitText = () => {
+    return <div class={['unitText', boxStyle.box_hcc, inputStyle.textUnit]}>{cache.param!.unit}</div>
+  }
+
+  const createUnitSelect = () => {
+    const tag = ElSelect
+    return <tag
+      size="default"
+      class={[inputStyle.selectUnit, 'selectUnit']}
+      v-model={cache.param!.unitValObj!.value}
+      multiple={false}
+      onChange={function () {
+        unitChange()
+      }}
+    >
+      {createUnitOption()}
+    </tag>
+  }
+
+  const unitChange = () => {
+    const val = cache.valObj.value
+    const unitValObj = cache.param!.unitValObj!
+    if (val && !isNaN(val)) {
+      cache.valObj.value =
+        (parseFloat(val) *
+          parseFloat(unitValObj.value) /
+          parseFloat(unitValObj.oldValue)
+        ).toString()
+    }
+    unitValObj.oldValue = unitValObj.value
+  }
+
+  const createUnitOption = () => {
+    const tag = ElOption
+    return <>
+      {
+        cache.param!.unitOption.map((rs: selectItemType) => {
+          return <tag label={rs.label} value={rs.value} key={rs.value}></tag>
+        })
+      }
+    </>
+  }
+
+  return { createUnit }
+}

@@ -4,12 +4,21 @@ const setting = [
     label: 'test',
     key: 'a',
     value: 'a',
-    style: '',
+    style: 'width:410px;',
     labelWidth: '',
     disabled: '',
     placeholder: '',
     unit: 'mhz',
-    unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }]
+    unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
+    ruleFn (val: any, formData: any) {
+      console.log('check fn')
+      console.log(val, formData)
+
+      return {
+        pass: (parseFloat(val) > 10),
+        msg: '未通过'
+      }
+    }
   },
   {
     type: 'select',
@@ -26,6 +35,7 @@ const setting = [
     type: 'group',
     label: 'group',
     key: 'group',
+    style: 'width:100%;border:1px solid #ccc; padding:10px;',
     children: [
       {
         type: 'text',
@@ -36,7 +46,7 @@ const setting = [
         labelWidth: '',
         disabled: '',
         placeholder: '',
-        unit: '',
+        unit: 'km',
         unitOption: []
       }
     ]

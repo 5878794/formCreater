@@ -26,7 +26,7 @@ const props1 = {
   formJson: []
 }
 export const fn = {
-  getFormVal: '',
+  getData: '',
   checkForm: '',
   find: ''
 }

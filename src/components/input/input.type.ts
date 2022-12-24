@@ -12,8 +12,9 @@ export interface uploadRsType {
   name: string
 }
 
-export interface valueObjType {
-  value: any
+export interface inputValueObjType {
+  value: any,
+  oldValue?: any
 }
 
 export interface unitValueObjType {
@@ -22,6 +23,9 @@ export interface unitValueObjType {
 }
 
 export interface formItemType {
+  __id__?: string,
+  __keyLv__?: string, // key的层级 中间用.分隔
+  children?: formItemType[],
   type: 'text' | 'password' | 'select' | 'radio' | 'checkbox' | 'color' |
     'button' | 'date' | 'time' | 'dateTime' | 'file' | 'img' | 'password' |
     'repeat' | 'table' | 'customCom' | 'group',
@@ -44,4 +48,9 @@ export interface formItemType {
   uploadFn: (file: File) => Promise<uploadRsType>, // file、img 上传时执行
   changeFn: (value: any, formObj: any, formData: any) => void, // 值变化时执行
   setupFn: (prop: formItemType) => Promise<any> // 初始执行
+}
+
+export interface inputCacheType {
+  param?: formItemType | null,
+  valObj: inputValueObjType
 }

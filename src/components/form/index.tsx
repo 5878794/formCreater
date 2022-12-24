@@ -1,8 +1,10 @@
-import { defineComponent } from 'vue'
-import myInput from '../input/input'
+import { defineComponent, getCurrentInstance, provide, reactive, toRefs, watch } from 'vue'
+import handlerData from './fn/handlerData'
+import { formItemType } from '../input/input.type'
+import group from './group'
 
 export default defineComponent({
-  components: { myInput },
+  components: { group },
   props: {
     canMdf: { type: Boolean, default: true },
     labelWidth: { type: String, default: '120px' },
@@ -14,46 +16,60 @@ export default defineComponent({
     }
   },
   setup (props, { expose }) {
-    return {}
-  },
-  render () {
-    console.log('render list')
-    const createItem = (item: any, serverData: any) => {
-      const type = item.type
+    const root = getCurrentInstance()
+    provide('root', root)
 
-      switch (type) {
-        case 'text': {
-          const data = serverData[item.key]
-          return <my-input
-            canMdf={this.canMdf}
-            labelWidth={this.labelWidth}
-            propData={item}
-            serverData={data}
-          ></my-input>
-        }
-        case 'group': {
-          const key = item.key
-          const data = (key) ? serverData[key] : serverData
-          return <div>
-            {item.label && <p>{item.label}</p>}
-            {item.children && createList(item.children, data)}
-          </div>
-        }
-        default:
-          console.error(type + ' 不存在！')
-          return null
+    const cache = reactive({ data: [] })
+    cache.data = handlerData(props.formSetting as formItemType[])
+
+    // formSetting 参数变化会重置表单
+    watch(() => props.formSetting, () => {
+      cache.data = handlerData(props.formSetting as formItemType[])
+    })
+
+    const getData = () => {
+      return { a: 1, b: 2 }
+    }
+    const checkForm = () => {
+      return {
+        pass: true,
+        msg: ''
+      }
+    }
+    const find = () => {
+      return ''
+    }
+    const checkAndGetData = () => {
+      return {
+        pass: true,
+        data: { a: 1, b: 2 }
       }
     }
 
-    const createList = (settings: any, serverData: any) => {
-      serverData = serverData || {}
-      return settings.map((item: any) => {
-        return createItem(item, serverData)
-      })
+    const changeFn = (id: string) => {
+      // TODO
+      console.log(id + ':change', getData())
     }
 
+    expose({ getData, checkForm, find, checkAndGetData, changeFn })
+    return {
+      ...toRefs(cache),
+      getData,
+      checkForm,
+      find,
+      checkAndGetData,
+      changeFn
+    }
+  },
+  render () {
+    console.log('render form')
     return <>
-      {createList(this.formSetting, this.serverData)}
+      <group
+        formSetting={this.data}
+        serverData={this.serverData}
+        labelWidth={this.labelWidth}
+        canMdf={this.canMdf}
+      ></group>
     </>
   }
 })
