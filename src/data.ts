@@ -48,6 +48,38 @@ const setting = [
     labelWidth: ''
   },
   {
+    type: 'dateTime',
+    label: 'test',
+    key: 'e',
+    value: '1671862422033',
+    style: '',
+    labelWidth: ''
+  },
+  {
+    type: 'time',
+    label: 'test',
+    key: 'f',
+    value: '1671862422033',
+    style: '',
+    labelWidth: ''
+  },
+  {
+    type: 'file',
+    label: 'test',
+    key: 'g',
+    value: 'file://asf/1213_asdfasdf.txt',
+    style: '',
+    labelWidth: '',
+    async uploadFn () {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('file://adf/asdfadf_444.txt')
+          // reject(new Error('222'))
+        }, 1000)
+      })
+    }
+  },
+  {
     type: 'group',
     label: 'group',
     key: 'group',
@@ -56,8 +88,8 @@ const setting = [
       {
         type: 'text',
         label: 'test',
-        key: 'a',
-        value: 'a',
+        key: 'z',
+        value: 'z',
         style: '',
         labelWidth: '',
         disabled: '',

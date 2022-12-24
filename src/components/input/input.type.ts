@@ -15,6 +15,7 @@ export interface uploadRsType {
 export interface inputValueObjType {
   value: any,
   oldValue?: any
+  showValue?:any
 }
 
 export interface unitValueObjType {
@@ -42,6 +43,7 @@ export interface formItemType {
   style: string, // 样式
   errMsg: string, // 验证错误信息
   unitValObj?: unitValueObjType,
+  isUploading?:boolean,
 
   ruleFn: (value: any, formData: any) => checkResultType, // 验证函数
   clickFn: (formObj: any, formData: any) => Promise<any>, // button 点击触发

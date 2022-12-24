@@ -2,7 +2,7 @@ import { cloneDeep } from 'lodash'
 import { inputCacheType, selectItemType } from '../input.type'
 import { watch } from 'vue'
 
-export default function (props: any, cache: inputCacheType, dataChangeFn:any) {
+export default function (props: any, cache: inputCacheType, dataChangeFn:any, showValChangeFn:any) {
   // 单位对象的处理  并添加到prop中
   const createUnitObj = () => {
     if (props.propData.unit && props.propData.unitOption && props.propData.unitOption.length > 0) {
@@ -15,6 +15,10 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any) {
       }
     }
   }
+
+  watch(() => cache.valObj.value, () => {
+    cache.valObj.showValue = showValChangeFn(cache.valObj.value)
+  })
 
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
@@ -35,6 +39,7 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any) {
     cache.param = Object.assign(cache.param || {}, thisPropData)
     // 对未传入labelWidth的取用公共的设置
     cache.param!.labelWidth = cache.param!.labelWidth || props.labelWidth
+    cache.param!.isUploading = false
   }
 
   const initFn = () => {

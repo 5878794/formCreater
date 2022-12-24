@@ -1,6 +1,7 @@
 import { inputCacheType } from '../input.type'
 import boxStyle from '../css/box.module.scss'
 
+// 动态加载 ../inputs/*.tsx 文件
 const inputFiles = require.context('../inputs/', false, /\.tsx$/)
 const inputs:any = {}
 inputFiles.keys().forEach((key:any) => {

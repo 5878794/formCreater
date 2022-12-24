@@ -13,6 +13,7 @@ import { ElFormItem } from 'element-plus'
 import boxStyle from '@/components/input/css/box.module.scss'
 
 import changeDataType from './fn/changeDataType'
+import getShowData from './fn/getShowData'
 import createInputFn from './fn/createInput'
 import createDivFn from './fn/createDiv'
 import createUnitFn from './fn/createUnit'
@@ -30,14 +31,16 @@ export default defineComponent({
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
       param: null,
-      valObj: { value: '', oldValue: '' }
+      valObj: { value: '', oldValue: '', showValue: '' }
     })
 
     // 数据格式转换函数
     const dataChangeFn = changeDataType(props.propData.type)
+    // 显示数据格式转换
+    const showValChangeFn = getShowData(props.propData.type)
 
     // 初始化
-    const { initFn } = init(props, cache, dataChangeFn)
+    const { initFn } = init(props, cache, dataChangeFn, showValChangeFn)
     initFn()
 
     // 创建数据变化触发函数
