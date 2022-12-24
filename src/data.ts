@@ -70,15 +70,15 @@ const setting = [
     key: 'g',
     value: 'file://asf/1213_asdfasdf.txt',
     style: '',
-    labelWidth: ''
-    // async uploadFn () {
-    //   return new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //       resolve('file://adf/asdfadf_444.txt')
-    //       // reject(new Error('222'))
-    //     }, 1000)
-    //   })
-    // }
+    labelWidth: '',
+    async uploadFn () {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('file://adf/asdfadf_444.txt')
+          // reject(new Error('222'))
+        }, 1000)
+      })
+    }
   },
   {
     type: 'group',
