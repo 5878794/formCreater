@@ -40,6 +40,7 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
     // 对未传入labelWidth的取用公共的设置
     cache.param!.labelWidth = cache.param!.labelWidth || props.labelWidth
     cache.param!.isUploading = false
+    cache.param!.disabled = (typeof cache.param!.disabled === 'boolean') ? cache.param!.disabled : false
   }
 
   const initFn = () => {

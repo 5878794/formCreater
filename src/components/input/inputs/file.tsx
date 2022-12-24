@@ -6,8 +6,12 @@ const uploadBtnText = '上传'
 export default function (cache: inputCacheType, checkFiled: any) {
   const tag = ElInput
   const uploadRun = async (e:any) => {
-    cache.param!.isUploading = true
     const file = e.file
+    if (!cache.param?.uploadFn) {
+      console.error(cache.param?.__keyLv__ + ' 未配置上传函数uploadFn！！')
+      return
+    }
+    cache.param!.isUploading = true
     const src = await cache.param!.uploadFn(file).catch((e:any) => {
       return ''
     })

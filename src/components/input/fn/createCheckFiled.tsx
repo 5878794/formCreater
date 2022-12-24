@@ -3,7 +3,7 @@ import { inputCacheType } from '../input.type'
 export default function (cache: inputCacheType, formObj: any) {
   const checkFiled = () => {
     cache.param!.errMsg = ''
-    const ruleFn = cache.param!.ruleFn
+    const ruleFn = cache.param!.ruleFn || function () { return { pass: true } }
     const val = cache.valObj.value
     let formData:any = {}
     if (formObj && formObj.proxy && formObj.proxy.getData) {

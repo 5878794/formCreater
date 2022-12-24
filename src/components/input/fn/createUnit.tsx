@@ -39,13 +39,17 @@ export default function (cache: inputCacheType) {
   }
 
   const unitChange = () => {
+    const change = (typeof cache.param?.unitAutoChangeVal === 'boolean') ? cache.param?.unitAutoChangeVal : true
+    if (!change) {
+      return
+    }
     const val = cache.valObj.value
     const unitValObj = cache.param!.unitValObj!
     if (val && !isNaN(val)) {
       cache.valObj.value =
         (parseFloat(val) *
-          parseFloat(unitValObj.value) /
-          parseFloat(unitValObj.oldValue)
+          parseFloat(unitValObj.oldValue) /
+          parseFloat(unitValObj.value)
         ).toString()
     }
     unitValObj.oldValue = unitValObj.value
@@ -55,7 +59,7 @@ export default function (cache: inputCacheType) {
     const tag = ElOption
     return <>
       {
-        cache.param!.unitOption.map((rs: selectItemType) => {
+        cache.param!.unitOption!.map((rs: selectItemType) => {
           return <tag label={rs.label} value={rs.value} key={rs.value}></tag>
         })
       }

@@ -10,6 +10,7 @@ const setting = [
     placeholder: '',
     unit: 'mhz',
     unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
+    unitAutoChangeVal: false,
     ruleFn (val: any, formData: any) {
       console.log('check fn')
       console.log(val, formData)
@@ -69,15 +70,15 @@ const setting = [
     key: 'g',
     value: 'file://asf/1213_asdfasdf.txt',
     style: '',
-    labelWidth: '',
-    async uploadFn () {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('file://adf/asdfadf_444.txt')
-          // reject(new Error('222'))
-        }, 1000)
-      })
-    }
+    labelWidth: ''
+    // async uploadFn () {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve('file://adf/asdfadf_444.txt')
+    //       // reject(new Error('222'))
+    //     }, 1000)
+    //   })
+    // }
   },
   {
     type: 'group',

@@ -12,11 +12,7 @@ const handlerData = (setting: formItemType[]) => {
       item.__id__ = guid()
       if (item.key) {
         thisKeyLv.push(item.key)
-      }
-      item.__keyLv__ = thisKeyLv.join('.')
-      item.disabled = item.disabled ? item.disabled : false
-      item.ruleFn = item.ruleFn || function () {
-        return { pass: true }
+        item.__keyLv__ = thisKeyLv.join('.')
       }
 
       if (item.children && item.children.length > 0) {
