@@ -1,14 +1,12 @@
 import { inputCacheType } from '../input.type'
 import boxStyle from '../css/box.module.scss'
 
-import text from '../inputs/text'
-import select from '../inputs/select'
-import color from '../inputs/color'
-import date from '../inputs/date'
-
-const inputs: any = {
-  text, select, color, date
-}
+const inputFiles = require.context('../inputs/', false, /\.tsx$/)
+const inputs:any = {}
+inputFiles.keys().forEach((key:any) => {
+  const moduleKey = key.replace(/(\.\/|\.tsx)/g, '')
+  inputs[moduleKey] = inputFiles(key).default
+})
 
 // 创建各种输入框
 export default function (cache: inputCacheType, checkFiled: any) {

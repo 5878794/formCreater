@@ -21,7 +21,7 @@ import bInput from './components/input/index'
 // export default class App extends Vue {
 // }
 export default defineComponent({
-  components: { myForm, bInput },
+  components: { myForm },
   setup () {
     const dataRef = ref<any>({})
     const settingRef = ref<any>([JSON.parse(JSON.stringify(setting[0]))])

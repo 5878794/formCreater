@@ -15,11 +15,10 @@
             align-items: center;
             justify-content: flex-start;
         }
+    }
 
-        .el-input,.el-select {
-            flex: 1 1 0 !important;
-        }
-
+    .input{
+        flex: 1 1 0 !important;
     }
 
     .textUnit {
