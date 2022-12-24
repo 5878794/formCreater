@@ -2,9 +2,10 @@ import { inputCacheType } from '../input.type'
 import boxStyle from '../css/box.module.scss'
 
 import text from '../inputs/text'
+import select from '../inputs/select'
 
 const inputs: any = {
-  text
+  text, select
 }
 
 // 创建各种输入框

@@ -29,7 +29,7 @@ const setting = [
     labelWidth: '',
     disabled: '',
     placeholder: '',
-    option: []
+    options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }]
   },
   {
     type: 'group',

@@ -1,7 +1,7 @@
 <template>
   <!--  <form-create/>-->
-<!--  <my-form :serverData="dataRef" :formSetting="settingRef"/>-->
-  <b-input :propData="tempData"></b-input>
+  <my-form :serverData="dataRef" :formSetting="settingRef"/>
+<!--  <b-input :propData="tempData"></b-input>-->
 </template>
 
 <script lang="ts">
