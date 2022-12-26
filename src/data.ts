@@ -88,6 +88,19 @@ const setting = [
     style: '',
     labelWidth: ''
   },
+  {
+    type: 'radio',
+    label: 'test',
+    key: 'j',
+    value: '1',
+    options: [{
+      label: 'aa',
+      value: '0'
+    }, {
+      label: 'bb',
+      value: '1'
+    }]
+  },
   // {
   //   type: 'img',
   //   label: 'test',
