@@ -60,7 +60,9 @@ export default defineComponent({
       console.log(obj.formData)
 
       const bb = test.value as any
-      console.log(bb.find('group'))
+      bb.find('b').setParam({
+        options: [{ label: 'aaa', value: '111' }, { label: 'bbb', value: '222' }]
+      })
     }
 
     const test = ref(null)
