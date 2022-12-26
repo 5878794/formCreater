@@ -1,11 +1,13 @@
 import { inputCacheType } from '../input.type'
 
-export default function (cache: inputCacheType, formObj: any) {
+export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
   const checkFiled = () => {
     cache.param!.errMsg = ''
-    const ruleFn = cache.param!.ruleFn || function () { return { pass: true } }
-    const val = cache.valObj.value
-    let formData:any = {}
+    const ruleFn = cache.param!.ruleFn || function () {
+      return { pass: true }
+    }
+    const val = getDataFn()
+    let formData: any = {}
     if (cache.param?.createByForm) {
       formData = formObj.proxy.getData()
     }

@@ -10,7 +10,7 @@ const setting = [
     placeholder: '',
     unit: 'mhz',
     unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
-    unitAutoChangeVal: false,
+    // unitAutoChangeVal: false,
     ruleFn (val: any, formData: any) {
       return {
         pass: (parseFloat(val) > 10),

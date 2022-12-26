@@ -12,6 +12,7 @@ import init from './fn/init'
 import { ElFormItem } from 'element-plus'
 import boxStyle from '@/components/input/css/box.module.scss'
 
+import getDataFn from './fn/getDataFn'
 import changeDataType from './fn/changeDataType'
 import getShowData from './fn/getShowData'
 import createInputFn from './fn/createInput'
@@ -47,8 +48,10 @@ export default defineComponent({
 
     // 创建数据变化触发函数
     createChangeFn(cache, root, emit)
+    // 获取数据
+    const getData = getDataFn(cache)
     // 创建验证函数
-    const { checkFiled } = createCheckFiledFn(cache, root)
+    const { checkFiled } = createCheckFiledFn(cache, root, getData)
     // 创建输入框函数
     const { createInput } = createInputFn(cache, checkFiled)
     // 创建非编辑状态时的div
@@ -56,9 +59,6 @@ export default defineComponent({
     // 创建单位
     const { createUnit } = createUnitFn(cache)
 
-    const getData = () => {
-      return cache.valObj.value
-    }
     expose({ getData, checkFiled })
     return {
       getData,
