@@ -39,11 +39,12 @@ export interface formItemType {
   value?: any, // 初始值
   unit?: string, // 显示单位
   unitOption?: selectItemType[], // 单位下拉选择
-  unitAutoChangeVal?:boolean, // 单位下拉是否自动转换值
+  unitAutoChangeVal?: boolean, // 单位下拉是否自动转换值
   options?: selectItemType[], // select、radio、checkbox  的选项
   style?: string, // 样式
   errMsg?: string, // 验证错误信息
   limit?: string, // 图片上传的最大数量
+  createByForm?: boolean, // 是否是由form组件创建
   unitValObj?: unitValueObjType, // 内部使用 当前单位的值
   isUploading?: boolean, // 内部使用  文件是否上传中
 

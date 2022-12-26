@@ -46,7 +46,6 @@ export default defineComponent({
     }
   },
   render () {
-    console.log('render list')
     const createItem = (item: any, serverData: any) => {
       const type = item.type
 
@@ -71,6 +70,7 @@ export default defineComponent({
             labelWidth={this.labelWidth}
             propData={item}
             serverData={data}
+            createByForm={true}
             data-key-lv={item.__keyLv__}
           ></my-input>
         }

@@ -15,7 +15,8 @@ export default defineComponent({
       type: Array, default: () => ([])
     }
   },
-  setup (props, { expose }) {
+  emits: ['change'],
+  setup (props, { expose, emit }) {
     const root = getCurrentInstance()
     provide('root', root)
 
@@ -47,8 +48,10 @@ export default defineComponent({
     }
 
     const changeFn = (id: string) => {
-      // TODO
-      console.log(id + ':change', getData())
+      emit('change', {
+        id: id,
+        formData: getData()
+      })
     }
 
     expose({ getData, checkForm, find, checkAndGetData, changeFn })
@@ -62,7 +65,6 @@ export default defineComponent({
     }
   },
   render () {
-    console.log('render form')
     return <>
       <group
         formSetting={this.data}

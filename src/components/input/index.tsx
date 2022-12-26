@@ -25,8 +25,10 @@ export default defineComponent({
     propData: { type: Object, default: () => ({}) },
     serverData: { type: [String, Object, Array], default: '' },
     labelWidth: { type: String, default: '120px' },
-    canMdf: { type: Boolean, default: true }
+    canMdf: { type: Boolean, default: true },
+    createByForm: { type: Boolean, default: false }
   },
+  emits: ['change'],
   setup (props, { emit, expose }) {
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
@@ -44,7 +46,7 @@ export default defineComponent({
     initFn()
 
     // 创建数据变化触发函数
-    createChangeFn(cache, root)
+    createChangeFn(cache, root, emit)
     // 创建验证函数
     const { checkFiled } = createCheckFiledFn(cache, root)
     // 创建输入框函数
@@ -63,7 +65,6 @@ export default defineComponent({
     }
   },
   render () {
-    console.log('render input')
     const tag = ElFormItem
     return <div
       class={['input_item', inputStyle.input_item]}

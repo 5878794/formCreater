@@ -1,6 +1,6 @@
 <template>
   <!--  <form-create/>-->
-  <my-form :serverData="dataRef" :formSetting="settingRef"/>
+  <my-form :serverData="dataRef" :formSetting="settingRef" @change="changeFn"/>
 <!--  <b-input :propData="tempData"></b-input>-->
 </template>
 
@@ -55,8 +55,13 @@ export default defineComponent({
       }
     }
 
+    const changeFn = (obj: any) => {
+      console.log(`form Change id:${obj.id} ======================`)
+      console.log(obj.formData)
+    }
+
     return {
-      dataRef, settingRef, tempData
+      dataRef, settingRef, tempData, changeFn
     }
   }
 })

@@ -49,6 +49,7 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
     cache.param!.labelWidth = cache.param!.labelWidth || props.labelWidth
     cache.param!.isUploading = false
     cache.param!.disabled = (typeof cache.param!.disabled === 'boolean') ? cache.param!.disabled : false
+    cache.param!.createByForm = props.createByForm
   }
 
   const initFn = () => {

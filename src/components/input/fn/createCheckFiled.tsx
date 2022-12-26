@@ -6,7 +6,7 @@ export default function (cache: inputCacheType, formObj: any) {
     const ruleFn = cache.param!.ruleFn || function () { return { pass: true } }
     const val = cache.valObj.value
     let formData:any = {}
-    if (formObj && formObj.proxy && formObj.proxy.getData) {
+    if (cache.param?.createByForm) {
       formData = formObj.proxy.getData()
     }
     const rs = ruleFn(val, formData)

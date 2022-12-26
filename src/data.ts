@@ -12,9 +12,6 @@ const setting = [
     unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
     unitAutoChangeVal: false,
     ruleFn (val: any, formData: any) {
-      console.log('check fn')
-      console.log(val, formData)
-
       return {
         pass: (parseFloat(val) > 10),
         msg: '未通过'
@@ -142,11 +139,10 @@ const setting = [
 
 const data = {
   a: '1',
-  b: '',
+  b: '2',
   group: {
-    a: '2'
-  },
-  h: 'http://www.baidu.com/aa.jpg,http://www.baidu.com/bb.jpg'
+    z: '3'
+  }
 }
 
 export { setting, data }
