@@ -56,6 +56,7 @@ export default defineComponent({
         case 'date':
         case 'dateTime':
         case 'time':
+        case 'password':
         case 'file':
         case 'img':
         case 'select': {

@@ -81,22 +81,30 @@ const setting = [
     }
   },
   {
-    type: 'img',
+    type: 'password',
     label: 'test',
-    key: 'h',
-    value: '',
-    showBigImageFn (url: string) {
-      console.log(url)
-    },
-    async uploadFn () {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('file://adf/asdfadf_444.jpg')
-          // reject(new Error('222'))
-        }, 1000)
-      })
-    }
+    key: 'i',
+    value: 'fff',
+    style: '',
+    labelWidth: ''
   },
+  // {
+  //   type: 'img',
+  //   label: 'test',
+  //   key: 'h',
+  //   value: '',
+  //   showBigImageFn (url: string) {
+  //     console.log(url)
+  //   },
+  //   async uploadFn () {
+  //     return new Promise((resolve, reject) => {
+  //       setTimeout(() => {
+  //         resolve('file://adf/asdfadf_444.jpg')
+  //         // reject(new Error('222'))
+  //       }, 1000)
+  //     })
+  //   }
+  // },
   {
     type: 'group',
     label: 'group',
