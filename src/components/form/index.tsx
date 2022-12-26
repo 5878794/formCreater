@@ -1,4 +1,4 @@
-import { defineComponent, getCurrentInstance, provide, reactive, toRefs, watch } from 'vue'
+import { defineComponent, ref, getCurrentInstance, provide, reactive, toRefs, watch } from 'vue'
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
@@ -28,23 +28,19 @@ export default defineComponent({
       cache.data = handlerData(props.formSetting as formItemType[])
     })
 
+    const main = ref(null)
+
     const getData = () => {
-      return { a: 1, b: 2 }
+      return (main.value as any).getData()
     }
     const checkForm = () => {
-      return {
-        pass: true,
-        msg: ''
-      }
+      return (main.value as any).checkForm()
     }
-    const find = () => {
-      return ''
+    const find = (key: string) => {
+      return (main.value as any).find(key)
     }
     const checkAndGetData = () => {
-      return {
-        pass: true,
-        data: { a: 1, b: 2 }
-      }
+      return (main.value as any).checkAndGetData()
     }
 
     const changeFn = (id: string) => {
@@ -61,12 +57,14 @@ export default defineComponent({
       checkForm,
       find,
       checkAndGetData,
-      changeFn
+      changeFn,
+      main
     }
   },
   render () {
     return <>
       <group
+        ref='main'
         formSetting={this.data}
         serverData={this.serverData}
         labelWidth={this.labelWidth}

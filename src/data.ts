@@ -138,11 +138,11 @@ const setting = [
 ]
 
 const data = {
-  a: '1',
-  b: '2',
-  group: {
-    z: '3'
-  }
+  a: '1'
+  // b: '2',
+  // group: {
+  //   z: '3'
+  // }
 }
 
 export { setting, data }

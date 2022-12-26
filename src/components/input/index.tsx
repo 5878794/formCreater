@@ -56,8 +56,13 @@ export default defineComponent({
     // 创建单位
     const { createUnit } = createUnitFn(cache)
 
-    expose({})
+    const getData = () => {
+      return cache.valObj.value
+    }
+    expose({ getData, checkFiled })
     return {
+      getData,
+      checkFiled,
       ...toRefs(cache),
       createDiv,
       createInput,

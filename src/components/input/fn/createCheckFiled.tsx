@@ -16,6 +16,8 @@ export default function (cache: inputCacheType, formObj: any) {
     } else {
       cache.valObj.oldValue = val
     }
+
+    return rs.pass
   }
 
   return { checkFiled }

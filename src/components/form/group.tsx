@@ -1,4 +1,4 @@
-import { defineComponent, getCurrentInstance, inject, provide, reactive, toRefs, watch } from 'vue'
+import { defineComponent, getCurrentInstance } from 'vue'
 import myInput from '../input/index'
 import formStyle from './css/formStyle.module.scss'
 import { formItemType } from '@/components/input/input.type'
@@ -18,22 +18,44 @@ export default defineComponent({
     id: { type: String, default: '' }
   },
   setup (props, { expose }) {
+    const showItems = new Map()
+    const _this = getCurrentInstance()
+
     const getData = () => {
-      return {}
+      const back: any = {}
+      showItems.forEach((value, key) => {
+        const domRef = _this!.proxy?.$refs[value] as any
+        back[key] = domRef.getData()
+      })
+      return back
     }
+
     const checkForm = () => {
-      return {
-        pass: true,
-        msg: ''
-      }
+      let pass = true
+      showItems.forEach((value, key) => {
+        const domRef = _this!.proxy?.$refs[value] as any
+        if (!domRef.checkFiled) {
+          pass = false
+        }
+      })
+
+      return pass
     }
-    const find = () => {
-      return ''
+
+    const find = (key: string) => {
+      const refValue = showItems.get(key)
+      const domRef = _this!.proxy?.$refs[refValue] as any
+      return domRef
     }
+
     const checkAndGetData = () => {
+      const pass = checkForm()
+      const data = getData()
+
       return {
-        pass: true,
-        data: {}
+        pass: pass,
+        data: data
+
       }
     }
 
@@ -42,12 +64,16 @@ export default defineComponent({
       getData,
       checkForm,
       find,
-      checkAndGetData
+      checkAndGetData,
+      showItems
     }
   },
   render () {
+    this.showItems.clear()
+
     const createItem = (item: any, serverData: any) => {
       const type = item.type
+      this.showItems.set(item.key, item.__id__)
 
       switch (type) {
         case 'text':
