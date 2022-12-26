@@ -12,6 +12,7 @@ import init from './fn/init'
 import { ElFormItem } from 'element-plus'
 import boxStyle from '@/components/input/css/box.module.scss'
 
+import refreshParamFn from './fn/refreshParamFn'
 import getDataFn from './fn/getDataFn'
 import changeDataType from './fn/changeDataType'
 import getShowData from './fn/getShowData'
@@ -58,11 +59,14 @@ export default defineComponent({
     const { createDiv } = createDivFn(cache)
     // 创建单位
     const { createUnit } = createUnitFn(cache)
+    // 刷新参数
+    const refreshParam = refreshParamFn(cache)
 
-    expose({ getData, checkFiled })
+    expose({ getData, checkFiled, refreshParam })
     return {
       getData,
       checkFiled,
+      refreshParam,
       ...toRefs(cache),
       createDiv,
       createInput,
