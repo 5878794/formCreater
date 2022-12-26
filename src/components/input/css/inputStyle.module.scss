@@ -39,4 +39,16 @@
         width: 80px;
     }
 
+    .img_wall {
+        :global(.el-upload--picture-card) {
+            &:before {
+                content: '+';
+                font-size: 80px;
+                color: #aaa;
+                position: relative;
+                top: -5%;
+            }
+        }
+    }
+
 }

@@ -57,6 +57,7 @@ export default defineComponent({
         case 'dateTime':
         case 'time':
         case 'file':
+        case 'img':
         case 'select': {
           const data = serverData[item.key]
           return <my-input

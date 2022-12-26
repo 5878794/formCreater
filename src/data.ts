@@ -81,6 +81,23 @@ const setting = [
     }
   },
   {
+    type: 'img',
+    label: 'test',
+    key: 'h',
+    value: '',
+    showBigImageFn (url: string) {
+      console.log(url)
+    },
+    async uploadFn () {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('file://adf/asdfadf_444.jpg')
+          // reject(new Error('222'))
+        }, 1000)
+      })
+    }
+  },
+  {
     type: 'group',
     label: 'group',
     key: 'group',
@@ -107,7 +124,8 @@ const data = {
   b: '',
   group: {
     a: '2'
-  }
+  },
+  h: 'http://www.baidu.com/aa.jpg,http://www.baidu.com/bb.jpg'
 }
 
 export { setting, data }

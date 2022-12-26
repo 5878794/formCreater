@@ -17,7 +17,7 @@ export default function (type:string) {
         }
       }
     default:
-      return (val:any) => {
+      return (val: any) => {
         return val
       }
   }

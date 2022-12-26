@@ -9,5 +9,5 @@ export default function (cache: inputCacheType, root: any) {
       console.log(cache.valObj.oldValue)
       root.proxy.changeFn(id)
     }
-  })
+  }, { deep: true })
 }

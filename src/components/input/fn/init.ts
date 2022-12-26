@@ -17,19 +17,27 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
   }
 
   watch(() => cache.valObj.value, () => {
-    cache.valObj.showValue = showValChangeFn(cache.valObj.value)
+    if (cache.param?.type !== 'img') {
+      autoCreateShowValue()
+    }
   })
+
+  const autoCreateShowValue = () => {
+    cache.valObj.showValue = showValChangeFn(cache.valObj.value)
+  }
 
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
     const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
     cache.valObj.value = val
     cache.valObj.oldValue = val
+    autoCreateShowValue()
   }
   const changeValObj = () => {
     const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.valObj.value)
     cache.valObj.value = val
     cache.valObj.oldValue = val
+    autoCreateShowValue()
   }
 
   const handlerPropObj = () => {

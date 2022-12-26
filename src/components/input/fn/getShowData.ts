@@ -15,8 +15,22 @@ export default function (type:string) {
         // 取文件名
         return fileName.substring(fileName.lastIndexOf('/') + 1)
       }
+    case 'img':
+      return (val: any) => {
+        const temp = val ? val.split(',') : []
+        const back: any = []
+        temp.map((item: any) => {
+          item = decodeURIComponent(item)
+          back.push({
+            name: item.substring(item.lastIndexOf('/') + 1),
+            url: item
+          })
+          return ''
+        })
+        return back
+      }
     default:
-      return (val:any) => {
+      return (val: any) => {
         return val
       }
   }
