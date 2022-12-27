@@ -2,7 +2,6 @@ import { defineComponent, ref, getCurrentInstance, provide, reactive, toRefs, wa
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
-import { assign } from 'lodash'
 
 export default defineComponent({
   components: { group },
