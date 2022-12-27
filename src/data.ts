@@ -3,7 +3,7 @@ const setting = [
     type: 'text',
     label: 'test',
     key: 'a',
-    value: 'a',
+    value: 22,
     style: 'width:410px;',
     labelWidth: '',
     disabled: '',

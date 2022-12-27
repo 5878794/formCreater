@@ -1,7 +1,11 @@
 <template>
   <!--  <form-create/>-->
   <my-form ref="test" :serverData="dataRef" :formSetting="settingRef" @change="changeFn"/>
-<!--  <b-input :propData="tempData"></b-input>-->
+  <!--  <b-input :propData="tempData"></b-input>-->
+  <button @click="change1">change</button>
+  <button @click="getData1">getData</button>
+  <button @click="checkForm1">checkFrom</button>
+  <button @click="checkAndGetData1">checkAndGetData</button>
 </template>
 
 <script lang="ts">
@@ -58,16 +62,41 @@ export default defineComponent({
     const changeFn = (obj: any) => {
       console.log(`form Change id:${obj.id} ======================`)
       console.log(obj.formData)
+    }
 
+    const change1 = () => {
       const bb = test.value as any
       bb.find('b').setParam({
         options: [{ label: 'aaa', value: '111' }, { label: 'bbb', value: '222' }]
       })
+      bb.find('b').setValue('222')
+    }
+    const getData1 = () => {
+      const bb = test.value as any
+      const data = bb.getData()
+      console.log(data)
+    }
+    const checkForm1 = () => {
+      const bb = test.value as any
+      bb.checkForm()
+    }
+    const checkAndGetData1 = () => {
+      const bb = test.value as any
+      const data = bb.checkAndGetData()
+      console.log(data)
     }
 
     const test = ref(null)
     return {
-      dataRef, settingRef, tempData, changeFn, test
+      dataRef,
+      settingRef,
+      tempData,
+      changeFn,
+      test,
+      change1,
+      getData1,
+      checkForm1,
+      checkAndGetData1
     }
   }
 })

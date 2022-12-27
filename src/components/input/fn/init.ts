@@ -29,6 +29,7 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
     const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
+    console.log(val)
     cache.valObj.value = val
     cache.valObj.oldValue = val
     autoCreateShowValue()

@@ -2,9 +2,11 @@
 
 import { inputCacheType } from '@/components/input/input.type'
 
-export default function (cache: inputCacheType) {
+export default function (cache: inputCacheType, showValChangeFn: any, dataChangeFn: any) {
   return function (val: any) {
-    // TODO
-    console.log(val)
+    const newVal = dataChangeFn(val)
+    cache.valObj.value = newVal
+    cache.valObj.oldValue = newVal
+    cache.valObj.showValue = showValChangeFn(newVal)
   }
 }

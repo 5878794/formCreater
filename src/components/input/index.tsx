@@ -63,7 +63,7 @@ export default defineComponent({
     // 刷新参数
     const setParam = setParamFn(cache)
     // 改变值
-    const setValue = setValueFn(cache)
+    const setValue = setValueFn(cache, showValChangeFn, dataChangeFn)
 
     expose({ getData, checkFiled, setParam, setValue })
     return {

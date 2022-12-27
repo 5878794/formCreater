@@ -34,7 +34,7 @@ export default defineComponent({
       return (main.value as any).getData()
     }
     const checkForm = () => {
-      return (main.value as any).checkForm()
+      return (main.value as any).checkFiled()
     }
     const find = (key: string) => {
       return (main.value as any).find(key)

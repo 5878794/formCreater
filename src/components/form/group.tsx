@@ -30,11 +30,11 @@ export default defineComponent({
       return back
     }
 
-    const checkForm = () => {
+    const checkFiled = () => {
       let pass = true
       showItems.forEach((value, key) => {
         const domRef = _this!.proxy?.$refs[value] as any
-        if (!domRef.checkFiled) {
+        if (domRef.checkFiled && !domRef.checkFiled()) {
           pass = false
         }
       })
@@ -49,7 +49,7 @@ export default defineComponent({
     }
 
     const checkAndGetData = () => {
-      const pass = checkForm()
+      const pass = checkFiled()
       const data = getData()
 
       return {
@@ -59,10 +59,10 @@ export default defineComponent({
       }
     }
 
-    expose({ getData, checkForm, find, checkAndGetData })
+    expose({ getData, checkFiled, find, checkAndGetData })
     return {
       getData,
-      checkForm,
+      checkFiled,
       find,
       checkAndGetData,
       showItems
