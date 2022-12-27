@@ -17,7 +17,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
     })
     cache.param!.isUploading = false
     if (src) {
-      cache.valObj.value = src
+      cache.valObj.bindValue = src
       checkFiled()
     }
   }
@@ -51,14 +51,4 @@ export default function (cache: inputCacheType, checkFiled: any) {
             {createButton()}
         </ElUpload>
     </>
-
-  // <tag
-  //     onblur={function () {
-  //       checkFiled()
-  //     }}
-  //     v-model={cache.valObj.value}
-  //     class={[inputStyle.input]}
-  //     disabled={cache.param!.disabled}
-  //     placeholder={cache.param!.placeholder}
-  // ></tag>
 }

@@ -6,14 +6,14 @@ export default function (cache: inputCacheType, checkFiled: any) {
   const tag = ElDatePicker
   return (
         <tag
-            onChange={function () {
-              checkFiled()
-            }}
-            v-model={cache.valObj.value}
-            class={[inputStyle.input]}
-            disabled={cache.param!.disabled}
-            placeholder={cache.param!.placeholder}
-            type="datetime"
+          onChange={function () {
+            checkFiled()
+          }}
+          v-model={cache.valObj.bindValue}
+          class={[inputStyle.input]}
+          disabled={cache.param!.disabled}
+          placeholder={cache.param!.placeholder}
+          type="datetime"
         ></tag>
   )
 }

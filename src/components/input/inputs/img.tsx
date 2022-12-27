@@ -33,33 +33,16 @@ export default function (cache: inputCacheType, checkFiled: any) {
   const uploadOk = (src: any, obj: any) => {
     // 上传失败处理
     if (!src) {
-      const n = cache.valObj.showValue.indexOf(obj)
-      cache.valObj.showValue.splice(n, 1)
+      const n = cache.valObj.bindValue.indexOf(obj)
+      cache.valObj.bindValue.splice(n, 1)
       return
     }
 
-    refreshData()
-  }
-
-  // 刷新数据
-  const refreshData = () => {
-    const back: any = []
-    cache.valObj.showValue.map((item: any) => {
-      back.push(item.response || item.url)
-      return ''
-    })
-
-    cache.valObj.value = back.join(',')
     checkFiled()
   }
-
+  //  删除时
   const handleRemove = (obj: any, list: any) => {
-    const back: any = []
-    list.map((item: any) => {
-      back.push(item.response)
-      return ''
-    })
-    refreshData()
+    checkFiled()
   }
 
   const checkFileType = () => {
@@ -69,7 +52,6 @@ export default function (cache: inputCacheType, checkFiled: any) {
   const tag = ElUpload
   return <>
     <tag
-      onChange={checkFiled}
       class={[inputStyle.img_wall]}
       disabled={cache.param!.disabled}
       on-preview={handlePictureCardPreview}
@@ -78,7 +60,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
       accept='image/*'
       http-request={uploadRun}
       before-upload={checkFileType}
-      v-model:file-list={cache.valObj.showValue}
+      v-model:file-list={cache.valObj.bindValue}
       show-file-list={true}
       list-type="picture-card"
       on-success={uploadOk}

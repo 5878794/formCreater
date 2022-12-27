@@ -7,7 +7,6 @@ export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
       return { pass: true }
     }
     const val = getDataFn()
-    console.log(val)
     let formData: any = {}
     if (cache.param?.createByForm) {
       formData = formObj.proxy.getData()
@@ -17,7 +16,7 @@ export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
     if (!rs.pass) {
       cache.param!.errMsg = rs.msg
     } else {
-      cache.valObj.oldValue = val
+      cache.valObj.value = val
     }
 
     return rs.pass

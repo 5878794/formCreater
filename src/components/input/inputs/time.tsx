@@ -6,13 +6,13 @@ export default function (cache: inputCacheType, checkFiled: any) {
   const tag = ElTimePicker
   return (
         <tag
-            onChange={function () {
-              checkFiled()
-            }}
-            v-model={cache.valObj.value}
-            class={[inputStyle.input]}
-            disabled={cache.param!.disabled}
-            placeholder={cache.param!.placeholder}
+          onChange={function () {
+            checkFiled()
+          }}
+          v-model={cache.valObj.bindValue}
+          class={[inputStyle.input]}
+          disabled={cache.param!.disabled}
+          placeholder={cache.param!.placeholder}
         ></tag>
   )
 }

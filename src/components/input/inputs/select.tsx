@@ -11,15 +11,15 @@ export default function (cache: inputCacheType, checkFiled: any) {
 
   return <>
         <ElSelect
-            onChange={function () {
-              checkFiled()
-            }}
-            v-model={cache.valObj.value}
-            multiple={false}
-            size="default"
-            class={[inputStyle.input]}
-            disabled={cache.param!.disabled}
-            placeholder={cache.param!.placeholder}
+          onChange={function () {
+            checkFiled()
+          }}
+          v-model={cache.valObj.bindValue}
+          multiple={false}
+          size="default"
+          class={[inputStyle.input]}
+          disabled={cache.param!.disabled}
+          placeholder={cache.param!.placeholder}
         >
             {
                 createOption()

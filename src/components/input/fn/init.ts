@@ -16,29 +16,18 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
     }
   }
 
-  watch(() => cache.valObj.value, () => {
-    if (cache.param?.type !== 'img') {
-      autoCreateShowValue()
-    }
+  watch(() => cache.valObj.bindValue, () => {
+    cache.valObj.showValue = showValChangeFn(cache.valObj.bindValue)
   })
-
-  const autoCreateShowValue = () => {
-    cache.valObj.showValue = showValChangeFn(cache.valObj.value)
-  }
 
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
-    const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
-    console.log(val)
-    cache.valObj.value = val
-    cache.valObj.oldValue = val
-    autoCreateShowValue()
+    cache.valObj.value = props.serverData ? props.serverData : cache.param!.value
+    cache.valObj.bindValue = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
   }
   const changeValObj = () => {
-    const val = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.valObj.value)
-    cache.valObj.value = val
-    cache.valObj.oldValue = val
-    autoCreateShowValue()
+    cache.valObj.value = props.serverData ? props.serverData : cache.valObj.value
+    cache.valObj.bindValue = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.valObj.value)
   }
 
   const handlerPropObj = () => {

@@ -4,7 +4,7 @@
 export default function (type:string) {
   switch (type) {
     case 'file':
-      return (val:any) => {
+      return (val: any) => {
         let fileName = decodeURIComponent(val)
         // 取后缀名
         const ext = fileName.substring(fileName.lastIndexOf('.'))
@@ -14,20 +14,6 @@ export default function (type:string) {
         fileName = fileNames.join('_') + ext
         // 取文件名
         return fileName.substring(fileName.lastIndexOf('/') + 1)
-      }
-    case 'img':
-      return (val: any) => {
-        const temp = val ? val.split(',') : []
-        const back: any = []
-        temp.map((item: any) => {
-          item = decodeURIComponent(item)
-          back.push({
-            name: item.substring(item.lastIndexOf('/') + 1),
-            url: item
-          })
-          return ''
-        })
-        return back
       }
     default:
       return (val: any) => {

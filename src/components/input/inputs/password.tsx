@@ -10,7 +10,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
         checkFiled()
       }}
       type='password'
-      v-model={cache.valObj.value}
+      v-model={cache.valObj.bindValue}
       class={[inputStyle.input]}
       disabled={cache.param!.disabled}
       placeholder={cache.param!.placeholder}

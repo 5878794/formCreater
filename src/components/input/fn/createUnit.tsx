@@ -43,10 +43,10 @@ export default function (cache: inputCacheType) {
     if (!change) {
       return
     }
-    const val = cache.valObj.value
+    const val = cache.valObj.bindValue
     const unitValObj = cache.param!.unitValObj!
     if (val && !isNaN(val)) {
-      cache.valObj.value =
+      cache.valObj.bindValue =
         (parseFloat(val) *
           parseFloat(unitValObj.oldValue) /
           parseFloat(unitValObj.value)

@@ -15,7 +15,7 @@ import boxStyle from '@/components/input/css/box.module.scss'
 import setParamFn from './fn/setParamFn'
 import setValueFn from './fn/setValueFn'
 import getDataFn from './fn/getDataFn'
-import changeDataType from './fn/changeDataType'
+import bindValueChangeFn from './fn/bindValueChange'
 import getShowData from './fn/getShowData'
 import createInputFn from './fn/createInput'
 import createDivFn from './fn/createDiv'
@@ -36,11 +36,18 @@ export default defineComponent({
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
       param: null,
-      valObj: { value: '', oldValue: '', showValue: '' }
+      valObj: {
+        // value: '',
+        // oldValue: '',
+        // showValue: ''
+        bindValue: '', // 绑定的value date img==
+        value: '', // 验证后的value （提交用）
+        showValue: '' // 显示值转换用 （绑定的值自动转换） file
+      }
     })
 
     // 数据格式转换函数
-    const dataChangeFn = changeDataType(props.propData.type)
+    const dataChangeFn = bindValueChangeFn(props.propData.type)
     // 显示数据格式转换
     const showValChangeFn = getShowData(props.propData.type)
 

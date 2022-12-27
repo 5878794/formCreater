@@ -6,7 +6,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
   const createInput = () => {
     return (
       <ElRadioGroup
-        v-model={cache.valObj.value}
+        v-model={cache.valObj.bindValue}
         disabled={cache.param!.disabled}
         onChange={function () {
           checkFiled()

@@ -5,12 +5,12 @@ import { ElColorPicker } from 'element-plus'
 export default function (cache: inputCacheType, checkFiled: any) {
   return (
         <ElColorPicker
-            onChange={function () {
-              checkFiled()
-            }}
-            v-model={cache.valObj.value}
-            class={[inputStyle.input]}
-            disabled={cache.param!.disabled}
+          onChange={function () {
+            checkFiled()
+          }}
+          v-model={cache.valObj.bindValue}
+          class={[inputStyle.input]}
+          disabled={cache.param!.disabled}
         ></ElColorPicker>
   )
 }

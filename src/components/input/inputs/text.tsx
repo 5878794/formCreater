@@ -9,7 +9,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
       onblur={function () {
         checkFiled()
       }}
-      v-model={cache.valObj.value}
+      v-model={cache.valObj.bindValue}
       class={[inputStyle.input]}
       disabled={cache.param!.disabled}
       placeholder={cache.param!.placeholder}

@@ -98,23 +98,23 @@ const setting = [
       value: '1'
     }]
   },
-  // {
-  //   type: 'img',
-  //   label: 'test',
-  //   key: 'h',
-  //   value: '',
-  //   showBigImageFn (url: string) {
-  //     console.log(url)
-  //   },
-  //   async uploadFn () {
-  //     return new Promise((resolve, reject) => {
-  //       setTimeout(() => {
-  //         resolve('file://adf/asdfadf_444.jpg')
-  //         // reject(new Error('222'))
-  //       }, 1000)
-  //     })
-  //   }
-  // },
+  {
+    type: 'img',
+    label: 'test',
+    key: 'h',
+    value: 'http://1.jpg,http://2.jpg',
+    showBigImageFn (url: string) {
+      console.log(url)
+    },
+    async uploadFn () {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('http://3.jpg')
+          // reject(new Error('222'))
+        }, 1000)
+      })
+    }
+  },
   {
     type: 'group',
     label: 'group',
