@@ -31,12 +31,11 @@ export default defineComponent({
     const settingRef = ref<any>([JSON.parse(JSON.stringify(setting[0]))])
 
     setTimeout(() => {
-      settingRef.value = setting
-    }, 2000)
-
-    setTimeout(() => {
       dataRef.value = data
     }, 4000)
+    setTimeout(() => {
+      settingRef.value = setting
+    }, 2000)
 
     const tempData = {
       type: 'text',
@@ -66,10 +65,8 @@ export default defineComponent({
 
     const change1 = () => {
       const bb = test.value as any
-      bb.find('b').setParam({
-        options: [{ label: 'aaa', value: '111' }, { label: 'bbb', value: '222' }]
-      })
-      bb.find('b').setValue('222')
+
+      bb.find('group').find('z').setValue('asdfasdf.jpg,1.jpg,2.jpg')
     }
     const getData1 = () => {
       const bb = test.value as any

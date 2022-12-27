@@ -2,6 +2,7 @@ import { defineComponent, ref, getCurrentInstance, provide, reactive, toRefs, wa
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
+import { assign } from 'lodash'
 
 export default defineComponent({
   components: { group },
@@ -20,12 +21,18 @@ export default defineComponent({
     const root = getCurrentInstance()
     provide('root', root)
 
-    const cache = reactive({ data: [] })
-    cache.data = handlerData(props.formSetting as formItemType[])
+    const cache = reactive({ data: [], submitData: {} })
+    const handlerDataFn = () => {
+      handlerData(props.formSetting as formItemType[], cache, props.serverData)
+    }
+    handlerDataFn()
 
     // formSetting 参数变化会重置表单
     watch(() => props.formSetting, () => {
-      cache.data = handlerData(props.formSetting as formItemType[])
+      handlerDataFn()
+    })
+    watch(() => props.serverData, () => {
+      handlerDataFn()
     })
 
     const main = ref(null)
@@ -44,9 +51,11 @@ export default defineComponent({
     }
 
     const changeFn = (id: string) => {
+      const data = getData()
+      cache.submitData = data
       emit('change', {
         id: id,
-        formData: getData()
+        formData: data
       })
     }
 
@@ -62,6 +71,7 @@ export default defineComponent({
     }
   },
   render () {
+    console.log('render main')
     return <>
       <group
         ref='main'
@@ -69,6 +79,7 @@ export default defineComponent({
         serverData={this.serverData}
         labelWidth={this.labelWidth}
         canMdf={this.canMdf}
+        submitData={this.submitData}
       ></group>
     </>
   }

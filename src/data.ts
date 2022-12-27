@@ -32,6 +32,7 @@ const setting = [
   {
     type: 'color',
     label: 'test',
+    when: 'b=1',
     key: 'c',
     value: '#ccc',
     style: '',
@@ -100,6 +101,7 @@ const setting = [
   },
   {
     type: 'img',
+    when: 'group.z=123',
     label: 'test',
     key: 'h',
     value: 'http://1.jpg,http://2.jpg',
@@ -132,17 +134,25 @@ const setting = [
         placeholder: '',
         unit: 'km',
         unitOption: []
+      },
+      {
+        type: 'time',
+        label: 'test',
+        key: 'f',
+        value: '1671862422033',
+        style: '',
+        labelWidth: ''
       }
     ]
   }
 ]
 
 const data = {
-  a: '1'
+  a: '1',
   // b: '2',
-  // group: {
-  //   z: '3'
-  // }
+  group: {
+    z: '3'
+  }
 }
 
 export { setting, data }

@@ -1,5 +1,6 @@
 import { defineComponent, getCurrentInstance } from 'vue'
 import myInput from '../input/index'
+import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
 import { formItemType } from '@/components/input/input.type'
 
@@ -15,7 +16,8 @@ export default defineComponent({
     formSetting: {
       type: Array, default: () => ([])
     },
-    id: { type: String, default: '' }
+    id: { type: String, default: '' },
+    submitData: { type: Object, default: () => ({}) }
   },
   setup (props, { expose }) {
     const showItems = new Map()
@@ -69,12 +71,23 @@ export default defineComponent({
     }
   },
   render () {
+    console.log('rander group')
     this.showItems.clear()
 
     const createItem = (item: any, serverData: any) => {
+      if (item.when) {
+        const temp = item.when.split('=')
+        const whenKey = temp[0] // id是可能带.的有层级
+        const whenVal = temp[1]
+        const nowData = getKeyValue(whenKey, this.submitData)
+
+        if (nowData.toString() !== whenVal) {
+          return null
+        }
+      }
+
       const type = item.type
       this.showItems.set(item.key, item.__id__)
-
       switch (type) {
         case 'text':
         case 'color':
