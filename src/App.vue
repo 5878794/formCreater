@@ -1,6 +1,13 @@
 <template>
   <!--  <form-create/>-->
-  <my-form ref="test" :serverData="dataRef" :formSetting="settingRef" @change="changeFn"/>
+  <my-form
+    :uploadFn="uploadFn"
+    :showBigImageFn="showBigImageFn"
+    ref="test"
+    :serverData="dataRef"
+    :formSetting="settingRef"
+    @change="changeFn"
+  />
   <!--  <b-input :propData="tempData"></b-input>-->
   <button @click="change1">change</button>
   <button @click="getData1">getData</button>
@@ -10,7 +17,7 @@
 
 <script lang="ts">
 // import { Options, Vue } from 'vue-class-component'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 // import formCreate from './components/formCreate/index'
 import myForm from './components/form/index'
 import { data, setting } from './data'
@@ -22,7 +29,6 @@ import bInput from './components/input/index'
 //   }
 // })
 
-// TODO 全局函数注入
 // TODO rule 简写规则
 
 // export default class App extends Vue {
@@ -90,6 +96,17 @@ export default defineComponent({
     }
 
     const test = ref(null)
+    // 上传函数 type=file/img
+    const uploadFn = function (file: File) {
+      return new Promise(resolve => {
+        resolve('http://www.12312.com/aaa_bbb.png')
+      })
+    }
+    // 查看大图的函数 type=img
+    const showBigImageFn = function (src: string) {
+      console.log(src)
+    }
+
     return {
       dataRef,
       settingRef,
@@ -99,7 +116,9 @@ export default defineComponent({
       change1,
       getData1,
       checkForm1,
-      checkAndGetData1
+      checkAndGetData1,
+      uploadFn,
+      showBigImageFn
     }
   }
 })

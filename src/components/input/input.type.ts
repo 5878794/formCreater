@@ -53,7 +53,6 @@ export interface formItemType {
   clickFn?: (formObj: any, formData: any) => Promise<any>, // button 点击触发
   uploadFn?: (file: File) => Promise<uploadRsType>, // file、img 上传时执行
   changeFn?: (value: any, formObj: any, formData: any) => void, // 值变化时执行
-  setupFn?: (prop: formItemType) => Promise<any> // 初始执行
   showBigImageFn?: (src: string) => void // 点击查看大图接口函数
 }
 

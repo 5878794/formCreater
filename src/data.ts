@@ -68,15 +68,15 @@ const setting = [
     key: 'g',
     value: 'file://asf/1213_asdfasdf.txt',
     style: '',
-    labelWidth: '',
-    async uploadFn () {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('file://adf/asdfadf_444.txt')
-          // reject(new Error('222'))
-        }, 1000)
-      })
-    }
+    labelWidth: ''
+    // async uploadFn () {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve('file://adf/asdfadf_444.txt')
+    //       // reject(new Error('222'))
+    //     }, 1000)
+    //   })
+    // }
   },
   {
     type: 'password',
@@ -105,9 +105,9 @@ const setting = [
     label: 'test',
     key: 'h',
     value: 'http://1.jpg,http://2.jpg',
-    showBigImageFn (url: string) {
-      console.log(url)
-    },
+    // showBigImageFn (url: string) {
+    //   console.log(url)
+    // },
     async uploadFn () {
       return new Promise((resolve, reject) => {
         setTimeout(() => {

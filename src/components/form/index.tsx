@@ -13,6 +13,20 @@ export default defineComponent({
     },
     formSetting: {
       type: Array, default: () => ([])
+    },
+    uploadFn: {
+      type: Function,
+      default: (file: File) => {
+        console.error('未配置上传函数')
+        return ''
+      }
+    },
+    showBigImageFn: {
+      type: Function,
+      default: (src: string) => {
+        console.error('未配置查看大图的函数')
+        return ''
+      }
     }
   },
   emits: ['change'],
@@ -22,7 +36,13 @@ export default defineComponent({
 
     const cache = reactive({ data: [], submitData: {} })
     const handlerDataFn = () => {
-      handlerData(props.formSetting as formItemType[], cache, props.serverData)
+      handlerData(
+        props.formSetting as formItemType[],
+        cache,
+        props.serverData,
+        props.uploadFn,
+        props.showBigImageFn
+      )
     }
     handlerDataFn()
 
