@@ -8,6 +8,7 @@
     :formSetting="settingRef"
     @change="changeFn"
     labelWidth="80px"
+    :rule="rule"
   />
   <!--  <b-input :propData="tempData"></b-input>-->
   <button @click="change1">change</button>
@@ -108,6 +109,16 @@ export default defineComponent({
       console.log(src)
     }
 
+    const rule = {
+      test (val: any, ruleVal?: string, label?: string) {
+        console.log('test in')
+        return {
+          pass: true,
+          msg: ''
+        }
+      }
+    }
+
     return {
       dataRef,
       settingRef,
@@ -119,7 +130,8 @@ export default defineComponent({
       checkForm1,
       checkAndGetData1,
       uploadFn,
-      showBigImageFn
+      showBigImageFn,
+      rule
     }
   }
 })

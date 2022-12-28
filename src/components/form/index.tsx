@@ -2,6 +2,7 @@ import { defineComponent, ref, getCurrentInstance, provide, reactive, toRefs, wa
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
+import myRule from '../input/fn/rule'
 
 export default defineComponent({
   components: { group },
@@ -13,6 +14,9 @@ export default defineComponent({
     },
     formSetting: {
       type: Array, default: () => ([])
+    },
+    rule: {
+      type: Object, default: () => ({})
     },
     uploadFn: {
       type: Function,
@@ -33,6 +37,11 @@ export default defineComponent({
   setup (props, { expose, emit }) {
     const root = getCurrentInstance()
     provide('root', root)
+
+    // rule合并
+    for (const [key, val] of Object.entries(props.rule)) {
+      (myRule as any)[key] = val
+    }
 
     const cache = reactive({ data: [], submitData: {} })
     const handlerDataFn = () => {

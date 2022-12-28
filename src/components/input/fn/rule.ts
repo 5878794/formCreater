@@ -5,6 +5,12 @@ export default {
       msg: '请输入！'
     }
   },
+  number (val: any) {
+    return {
+      pass: !isNaN(val),
+      msg: '请输入数字'
+    }
+  },
   min (val: any, ruleVal: string, label?: string) {
     if (!ruleVal) {
       return { pass: true, msg: '' }
