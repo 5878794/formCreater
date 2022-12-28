@@ -72,7 +72,17 @@ export default defineComponent({
     // 改变值
     const setValue = setValueFn(cache, showValChangeFn, dataChangeFn)
 
-    expose({ getData, checkFiled, setParam, setValue })
+    expose({
+      getData,
+      checkFiled,
+      setParam,
+      setValue,
+      label: cache.param?.label,
+      unit: cache.param?.unit,
+      type: cache.param?.type,
+      options: cache.param?.options,
+      unitOption: cache.param?.unitOption
+    })
     return {
       getData,
       checkFiled,

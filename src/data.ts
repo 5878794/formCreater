@@ -6,6 +6,7 @@ const setting = [
     value: 22,
     style: 'width:410px;',
     labelWidth: '',
+    rule: 'required,max:100,max:group.z',
     disabled: '',
     placeholder: '',
     unit: 'mhz',

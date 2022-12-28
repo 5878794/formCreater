@@ -71,7 +71,12 @@ export default defineComponent({
 
     const changeFn = (id: string) => {
       const data = getData()
-      cache.submitData = data
+      const back: any = {}
+      for (const [key, val] of Object.entries(data)) {
+        back[key] = (val as any).value
+      }
+
+      cache.submitData = back
       emit('change', {
         id: id,
         formData: data

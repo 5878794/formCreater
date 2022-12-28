@@ -7,6 +7,7 @@
     :serverData="dataRef"
     :formSetting="settingRef"
     @change="changeFn"
+    labelWidth="80px"
   />
   <!--  <b-input :propData="tempData"></b-input>-->
   <button @click="change1">change</button>

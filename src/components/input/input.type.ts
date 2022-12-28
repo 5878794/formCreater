@@ -37,6 +37,7 @@ export interface formItemType {
   disabled?: boolean, // 是否可输入 default:false
   placeholder?: string,
   value?: any, // 初始值
+  rule?: string, // 简单的验证规则
   unit?: string, // 显示单位
   unitOption?: selectItemType[], // 单位下拉选择
   unitAutoChangeVal?: boolean, // 单位下拉是否自动转换值
