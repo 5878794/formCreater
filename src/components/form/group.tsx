@@ -27,14 +27,7 @@ export default defineComponent({
       const back: any = {}
       showItems.forEach((value, key) => {
         const domRef = _this!.proxy?.$refs[value] as any
-        back[key] = {
-          value: domRef.getData(),
-          label: domRef.label,
-          unit: domRef.unit,
-          type: domRef.type,
-          options: domRef.options,
-          unitOption: domRef.unitOption
-        }
+        back[key] = (domRef && domRef.getData) ? domRef.getData() : ''
       })
       return back
     }
@@ -61,14 +54,9 @@ export default defineComponent({
       const pass = checkFiled()
       const data = getData()
 
-      const back: any = {}
-      for (const [key, val] of Object.entries(data)) {
-        back[key] = (val as any).value
-      }
-
       return {
         pass: pass,
-        data: back
+        data: data
 
       }
     }

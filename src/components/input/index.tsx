@@ -7,6 +7,7 @@ import { defineComponent, watch, reactive, toRefs, inject } from 'vue'
 import { inputCacheType } from './input.type'
 import inputStyle from './css/inputStyle.module.scss'
 import 'element-plus/dist/index.css'
+import { cloneDeep } from 'lodash'
 
 import init from './fn/init'
 import { ElFormItem } from 'element-plus'
@@ -71,12 +72,17 @@ export default defineComponent({
     const setParam = setParamFn(cache)
     // 改变值
     const setValue = setValueFn(cache, showValChangeFn, dataChangeFn)
+    // 获取所有参数
+    const getParam = () => {
+      return cloneDeep(cache.param)
+    }
 
     expose({
       getData,
       checkFiled,
       setParam,
       setValue,
+      getParam,
       label: cache.param?.label,
       unit: cache.param?.unit,
       type: cache.param?.type,
@@ -86,6 +92,7 @@ export default defineComponent({
     return {
       getData,
       checkFiled,
+      getParam,
       setParam,
       setValue,
       ...toRefs(cache),
