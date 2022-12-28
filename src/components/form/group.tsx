@@ -71,7 +71,6 @@ export default defineComponent({
     }
   },
   render () {
-    console.log('rander group')
     this.showItems.clear()
 
     const createItem = (item: any, serverData: any) => {

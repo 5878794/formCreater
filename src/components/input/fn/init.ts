@@ -20,14 +20,26 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
     cache.valObj.showValue = showValChangeFn(cache.valObj.bindValue)
   })
 
+  const handlerStamp = () => {
+    // 处理时间戳
+    const type = cache.param?.type
+    if (type === 'date' || type === 'time' || type === 'dateTime') {
+      cache.valObj.value = cache.valObj.bindValue.getTime()
+    }
+  }
+
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
     cache.valObj.value = props.serverData ? props.serverData : cache.param!.value
     cache.valObj.bindValue = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
+
+    handlerStamp()
   }
   const changeValObj = () => {
     cache.valObj.value = props.serverData ? props.serverData : cache.valObj.value
     cache.valObj.bindValue = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.valObj.value)
+
+    handlerStamp()
   }
 
   const handlerPropObj = () => {

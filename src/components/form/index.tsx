@@ -100,7 +100,6 @@ export default defineComponent({
     }
   },
   render () {
-    console.log('render main')
     return <>
       <group
         ref='main'
