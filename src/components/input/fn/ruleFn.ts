@@ -1,29 +1,9 @@
 import { checkResultType } from '../input.type'
 import myRule from './rule'
+import getKeyValue from '../../form/fn/getKeyValue'
+import getKeyLabel from '../../form/fn/getKeyLabel'
 
-const getFormDataVal = (formData: any, key: string, formObj: any) => {
-  // key可能带层级
-  const keys = key.split('.')
-  let data = formData
-  let obj: any = formObj.proxy
-  for (let i = 0, l = keys.length; i < l; i++) {
-    const thisKey = keys[i]
-    if (data[thisKey]) {
-      obj = obj.find(thisKey)
-      data = data[thisKey]
-    } else {
-      data = ''
-      obj = ''
-      break
-    }
-  }
-  return {
-    data,
-    label: (obj && obj.getParam) ? obj.getParam().label : ''
-  }
-}
-
-export default function (rule: string, val: any, formData: any, formObj: any): checkResultType {
+export default function (rule: string, val: any, formData: any, formObj: any, rowIndex: any[]): checkResultType {
   if (!rule) {
     return { pass: true, msg: '' }
   }
@@ -44,9 +24,8 @@ export default function (rule: string, val: any, formData: any, formObj: any): c
         // 是数字
       } else {
         // 是key
-        const rs = getFormDataVal(formData, ruleVal, formObj)
-        ruleVal = rs.data
-        label = rs.label
+        label = getKeyLabel(ruleVal, formObj)
+        ruleVal = getKeyValue(ruleVal, formData, rowIndex)
       }
     }
 

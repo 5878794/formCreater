@@ -3,10 +3,10 @@ const setting = [
     type: 'text',
     label: 'test',
     key: 'a',
-    value: 22,
+    value: 1,
     style: 'width:410px;',
     labelWidth: '',
-    rule: 'required,max:100,max:group.z,test',
+    rule: 'required,max:group.z',
     disabled: '',
     placeholder: '',
     unit: 'mhz',
@@ -15,7 +15,7 @@ const setting = [
     ruleFn (val: any, formData: any) {
       console.log(formData)
       return {
-        pass: (parseFloat(val) > 10),
+        pass: (parseFloat(val) > 0),
         msg: '未通过'
       }
     }
@@ -32,93 +32,119 @@ const setting = [
     options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }]
   },
   {
-    type: 'color',
+    type: 'repeat',
     label: 'test',
-    when: 'b=1',
-    key: 'c',
-    value: '#ccc',
+    key: 'repeat',
     style: '',
-    labelWidth: ''
+    repeatBy: 'a',
+    children: [
+      {
+        type: 'color',
+        label: 'color',
+        when: 'repeat[row].d=1',
+        key: 'c',
+        value: '#ccc',
+        style: '',
+        labelWidth: ''
+      },
+      {
+        type: 'text',
+        label: 'rep1.d',
+        key: 'd',
+        value: '',
+        style: '',
+        labelWidth: ''
+      },
+      {
+        type: 'repeat',
+        label: 'test',
+        key: 'rep1',
+        repeatBy: 'repeat[row].d',
+        children: [
+          {
+            type: 'text',
+            label: 'rep2.d',
+            key: 'j',
+            value: '',
+            style: '',
+            labelWidth: ''
+          }
+        ]
+      }
+    ]
   },
-  {
-    type: 'date',
-    label: 'test',
-    key: 'd',
-    value: '1671862422033',
-    style: '',
-    labelWidth: ''
-  },
-  {
-    type: 'dateTime',
-    label: 'test',
-    key: 'e',
-    value: '1671862422033',
-    style: '',
-    labelWidth: ''
-  },
-  {
-    type: 'time',
-    label: 'test',
-    key: 'f',
-    value: '1671862422033',
-    style: '',
-    labelWidth: ''
-  },
-  {
-    type: 'file',
-    label: 'test',
-    key: 'g',
-    value: 'file://asf/1213_asdfasdf.txt',
-    style: '',
-    labelWidth: ''
-    // async uploadFn () {
-    //   return new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //       resolve('file://adf/asdfadf_444.txt')
-    //       // reject(new Error('222'))
-    //     }, 1000)
-    //   })
-    // }
-  },
-  {
-    type: 'password',
-    label: 'test',
-    key: 'i',
-    value: 'fff',
-    style: '',
-    labelWidth: ''
-  },
-  {
-    type: 'radio',
-    label: 'test',
-    key: 'j',
-    value: '1',
-    options: [{
-      label: 'aa',
-      value: '0'
-    }, {
-      label: 'bb',
-      value: '1'
-    }]
-  },
-  {
-    type: 'img',
-    when: 'group.z=123',
-    label: 'test',
-    key: 'h',
-    value: 'http://1.jpg,http://2.jpg',
-    // showBigImageFn (url: string) {
-    //   console.log(url)
-    // },
-    async uploadFn () {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('http://3.jpg')
-          // reject(new Error('222'))
-        }, 1000)
-      })
-    }
-  },
+
+  // {
+  //   type: 'dateTime',
+  //   label: 'test',
+  //   key: 'e',
+  //   value: '1671862422033',
+  //   style: '',
+  //   labelWidth: ''
+  // },
+  // {
+  //   type: 'time',
+  //   label: 'test',
+  //   key: 'f',
+  //   value: '1671862422033',
+  //   style: '',
+  //   labelWidth: ''
+  // },
+  // {
+  //   type: 'file',
+  //   label: 'test',
+  //   key: 'g',
+  //   value: 'file://asf/1213_asdfasdf.txt',
+  //   style: '',
+  //   labelWidth: ''
+  //   // async uploadFn () {
+  //   //   return new Promise((resolve, reject) => {
+  //   //     setTimeout(() => {
+  //   //       resolve('file://adf/asdfadf_444.txt')
+  //   //       // reject(new Error('222'))
+  //   //     }, 1000)
+  //   //   })
+  //   // }
+  // },
+  // {
+  //   type: 'password',
+  //   label: 'test',
+  //   key: 'i',
+  //   value: 'fff',
+  //   style: '',
+  //   labelWidth: ''
+  // },
+  // {
+  //   type: 'radio',
+  //   label: 'test',
+  //   key: 'j',
+  //   value: '1',
+  //   options: [{
+  //     label: 'aa',
+  //     value: '0'
+  //   }, {
+  //     label: 'bb',
+  //     value: '1'
+  //   }]
+  // },
+  // {
+  //   type: 'img',
+  //   when: 'group.z=123',
+  //   label: 'test',
+  //   key: 'h',
+  //   value: 'http://1.jpg,http://2.jpg',
+  //   // showBigImageFn (url: string) {
+  //   //   console.log(url)
+  //   // },
+  //   async uploadFn () {
+  //     return new Promise((resolve, reject) => {
+  //       setTimeout(() => {
+  //         resolve('http://3.jpg')
+  //         // reject(new Error('222'))
+  //       }, 1000)
+  //     })
+  //   }
+  // },
   {
     type: 'group',
     label: 'group',
@@ -151,11 +177,11 @@ const setting = [
 ]
 
 const data = {
-  a: '1',
+  // a: '1'
   // b: '2',
-  group: {
-    z: '3'
-  }
+  // group: {
+  //   z: '3'
+  // }
 }
 
 export { setting, data }

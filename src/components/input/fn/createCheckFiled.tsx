@@ -14,8 +14,8 @@ export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
     }
 
     // rule的验证
-    if (cache.param?.rule) {
-      const rs = ruleFunction(cache.param?.rule, val, formData, formObj)
+    if (cache.param?.rule && cache.param?.createByForm) {
+      const rs = ruleFunction(cache.param?.rule, val, formData, formObj, cache.rowIndex!)
       if (!rs.pass) {
         cache.param!.errMsg = rs.msg
         return false

@@ -30,12 +30,14 @@ export default defineComponent({
     serverData: { type: [String, Object, Array], default: '' },
     labelWidth: { type: String, default: '120px' },
     canMdf: { type: Boolean, default: true },
-    createByForm: { type: Boolean, default: false }
+    createByForm: { type: Boolean, default: false },
+    rowIndex: { type: Array, default: () => ([]) }
   },
   emits: ['change'],
   setup (props, { emit, expose }) {
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
+      rowIndex: props.rowIndex,
       param: null,
       valObj: {
         // value: '',

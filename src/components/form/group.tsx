@@ -3,6 +3,7 @@ import myInput from '../input/index'
 import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
 import { formItemType } from '@/components/input/input.type'
+import repeatDom from './repeat'
 
 export default defineComponent({
   name: 'bFrom',
@@ -17,7 +18,8 @@ export default defineComponent({
       type: Array, default: () => ([])
     },
     id: { type: String, default: '' },
-    submitData: { type: Object, default: () => ({}) }
+    submitData: { type: Object, default: () => ({}) },
+    rowIndex: { type: Array, default: () => ([]) }
   },
   setup (props, { expose }) {
     const showItems = new Map()
@@ -78,8 +80,7 @@ export default defineComponent({
         const temp = item.when.split('=')
         const whenKey = temp[0] // id是可能带.的有层级
         const whenVal = temp[1]
-        const nowData = getKeyValue(whenKey, this.submitData)
-
+        const nowData = getKeyValue(whenKey, this.submitData, this.rowIndex) || ''
         if (nowData.toString() !== whenVal) {
           return null
         }
@@ -110,6 +111,7 @@ export default defineComponent({
             serverData={data}
             createByForm={true}
             data-key-lv={item.__keyLv__}
+            rowIndex={this.rowIndex}
           ></my-input>
         }
         case 'group': {
@@ -127,6 +129,34 @@ export default defineComponent({
             {key && item.children && createGroup(item, data)}
           </div>
         }
+        case 'repeat': {
+          const key = item.key
+          const data = serverData[key] || []
+          const tag = repeatDom
+          if (item.repeatBy) {
+            return <div
+              style={item.style}
+              id={item.__id__}
+              data-key-lv={item.__keyLv__}
+            >
+              <tag
+                id={item.__id__}
+                ref={item.__id__}
+                key={item.__id__}
+                formSetting={item.children}
+                serverData={data}
+                labelWidth={this.labelWidth}
+                canMdf={this.canMdf}
+                repeatBy={item.repeatBy}
+                submitData={this.submitData}
+                rowIndex={this.rowIndex}
+              ></tag>
+            </div>
+          } else {
+            console.error('repeat 组件未设置 repeatBy 属性')
+            return null
+          }
+        }
         default:
           console.error(type + ' 不存在！')
           return null
@@ -141,6 +171,8 @@ export default defineComponent({
         serverData={data}
         labelWidth={this.labelWidth}
         canMdf={this.canMdf}
+        submitData={this.submitData}
+        rowIndex={this.rowIndex}
       ></b-from>
     }
 

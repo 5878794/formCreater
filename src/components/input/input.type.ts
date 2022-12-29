@@ -42,6 +42,7 @@ export interface formItemType {
   unitOption?: selectItemType[], // 单位下拉选择
   unitAutoChangeVal?: boolean, // 单位下拉是否自动转换值
   options?: selectItemType[], // select、radio、checkbox  的选项
+  repeatBy?: string, // 循环组件的循环值依赖于的key
   style?: string, // 样式
   errMsg?: string, // 验证错误信息
   limit?: string, // 图片上传的最大数量
@@ -59,5 +60,6 @@ export interface formItemType {
 
 export interface inputCacheType {
   param?: formItemType | null,
-  valObj: inputValueObjType
+  valObj: inputValueObjType,
+  rowIndex?: any[]
 }
