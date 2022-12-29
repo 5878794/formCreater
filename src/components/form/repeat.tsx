@@ -92,7 +92,7 @@ export default defineComponent({
       ></tag>
     }
 
-    const repeatNumber = getKeyValue(this.repeatBy, this.submitData, this.rowIndex) || 0
+    const repeatNumber = parseInt(getKeyValue(this.repeatBy, this.submitData, this.rowIndex)) || 0
     console.log(repeatNumber)
     return <div class={[formStyle.form_item, '__repeat__']}>
       {new Array(repeatNumber).fill('').map((item, i) => {
