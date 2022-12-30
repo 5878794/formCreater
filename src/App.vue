@@ -31,7 +31,7 @@ import bInput from './components/input/index'
 //   }
 // })
 
-// TODO Button repeat table addList gis 自定义组件
+// TODO Button table addList gis 自定义组件
 
 // export default class App extends Vue {
 // }
