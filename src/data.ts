@@ -14,7 +14,6 @@ const setting = [
     unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
     // unitAutoChangeVal: false,
     ruleFn (val: any, formData: any) {
-      console.log(formData)
       return {
         pass: (parseFloat(val) > 0),
         msg: '未通过'

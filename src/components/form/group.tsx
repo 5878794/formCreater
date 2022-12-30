@@ -1,9 +1,10 @@
-import { defineComponent, getCurrentInstance, inject, onMounted } from 'vue'
+import { defineComponent, getCurrentInstance, inject, onMounted, onUpdated } from 'vue'
 import myInput from '../input/index'
 import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
 import { formItemType } from '@/components/input/input.type'
 import repeatDom from './repeat'
+import checkRenderChange from './fn/checkRenderChange'
 
 export default defineComponent({
   name: 'bFrom',
@@ -66,9 +67,7 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
-      (root as any).proxy.refresh()
-    })
+    checkRenderChange(showItems, root)
 
     expose({ getData, checkFiled, find, checkAndGetData })
     return {

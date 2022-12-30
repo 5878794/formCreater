@@ -32,7 +32,7 @@ import bInput from './components/input/index'
 // })
 
 // TODO table addList gis 自定义组件
-// TODO 刷新有问题、 补changeFn到配置中
+// TODO 补changeFn到配置中
 
 // export default class App extends Vue {
 // }
