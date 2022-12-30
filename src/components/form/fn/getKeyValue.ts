@@ -7,7 +7,11 @@ export default function (key: string, data: any, rowIndex: any[]) {
   const keyLv = realId.split(/\[|\]\.|\./ig)
   let back = ''
   for (let i = 0, l = keyLv.length; i < l; i++) {
-    newData = newData[keyLv[i]] ?? {}
+    newData = newData[keyLv[i]] ?? ''
+    if (newData === '') {
+      back = ''
+      break
+    }
     if (i === l - 1) {
       back = newData
     }

@@ -24,7 +24,8 @@ const setting = [
     type: 'select',
     label: 'test',
     key: 'b',
-    value: 'b',
+    value: '1',
+    when: 'a=1',
     style: '',
     labelWidth: '',
     disabled: '',
@@ -32,57 +33,66 @@ const setting = [
     options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }]
   },
   {
-    type: 'repeat',
+    type: 'time',
     label: 'test',
-    key: 'repeat',
+    key: 'f',
+    when: 'b=1',
+    value: '1671862422033',
     style: '',
-    repeatBy: 'a',
-    children: [
-      {
-        type: 'color',
-        label: 'color',
-        when: 'repeat[row].d=1',
-        key: 'c',
-        value: '#ccc',
-        style: '',
-        labelWidth: ''
-      },
-      {
-        type: 'text',
-        label: 'rep1.d',
-        key: 'd',
-        value: '1',
-        style: '',
-        labelWidth: ''
-      },
-      {
-        type: 'repeat',
-        label: 'test',
-        key: 'rep1',
-        repeatBy: 'repeat[row].d',
-        children: [
-          {
-            type: 'text',
-            label: 'rep2.j',
-            key: 'j',
-            value: '1',
-            style: '',
-            labelWidth: ''
-          },
-          {
-            type: 'text',
-            label: 'rep2.k',
-            when: 'repeat[row].rep1[row].j=1',
-            rule: 'max:repeat[row].rep1[row].j',
-            key: 'k',
-            value: '',
-            style: '',
-            labelWidth: ''
-          }
-        ]
-      }
-    ]
-  },
+    labelWidth: ''
+  }
+  // {
+  //   type: 'repeat',
+  //   label: 'test',
+  //   key: 'repeat',
+  //   style: '',
+  //   repeatBy: 'a',
+  //   children: [
+  //     {
+  //       type: 'color',
+  //       label: 'color',
+  //       when: 'repeat[row].d=1',
+  //       key: 'c',
+  //       value: '#ccc',
+  //       style: '',
+  //       labelWidth: ''
+  //     },
+  //     {
+  //       type: 'text',
+  //       label: 'rep1.d',
+  //       key: 'd',
+  //       value: '1',
+  //       style: '',
+  //       labelWidth: ''
+  //     },
+  //     {
+  //       type: 'repeat',
+  //       label: 'test',
+  //       key: 'rep1',
+  //       repeatBy: 'repeat[row].d',
+  //       children: [
+  //         {
+  //           type: 'text',
+  //           label: 'rep2.j',
+  //           key: 'j',
+  //           value: '1',
+  //           style: '',
+  //           labelWidth: ''
+  //         },
+  //         {
+  //           type: 'text',
+  //           label: 'rep2.k',
+  //           when: 'repeat[row].rep1[row].j=1',
+  //           rule: 'max:repeat[row].rep1[row].j',
+  //           key: 'k',
+  //           value: '',
+  //           style: '',
+  //           labelWidth: ''
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
 
   // {
   //   type: 'dateTime',
@@ -155,35 +165,35 @@ const setting = [
   //     })
   //   }
   // },
-  {
-    type: 'group',
-    label: 'group',
-    key: 'group',
-    style: 'width:100%;border:1px solid #ccc; padding:10px;',
-    children: [
-      {
-        type: 'text',
-        label: 'grou',
-        key: 'z',
-        value: 'z',
-        style: '',
-        labelWidth: '',
-        rule: 'number',
-        disabled: '',
-        placeholder: '',
-        unit: 'km',
-        unitOption: []
-      },
-      {
-        type: 'time',
-        label: 'test',
-        key: 'f',
-        value: '1671862422033',
-        style: '',
-        labelWidth: ''
-      }
-    ]
-  }
+  // {
+  //   type: 'group',
+  //   label: 'group',
+  //   key: 'group',
+  //   style: 'width:100%;border:1px solid #ccc; padding:10px;',
+  //   children: [
+  //     {
+  //       type: 'text',
+  //       label: 'grou',
+  //       key: 'z',
+  //       value: 'z',
+  //       style: '',
+  //       labelWidth: '',
+  //       rule: 'number',
+  //       disabled: '',
+  //       placeholder: '',
+  //       unit: 'km',
+  //       unitOption: []
+  //     },
+  //     {
+  //       type: 'time',
+  //       label: 'test',
+  //       key: 'f',
+  //       value: '1671862422033',
+  //       style: '',
+  //       labelWidth: ''
+  //     }
+  //   ]
+  // }
 ]
 
 const data = {
