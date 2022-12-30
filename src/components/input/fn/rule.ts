@@ -17,7 +17,7 @@ export default {
     }
     return {
       pass: parseFloat(val.toString()) <= parseFloat(ruleVal),
-      msg: `必须小于${label || ruleVal}`
+      msg: `必须小于等于${label || ruleVal}`
     }
   },
   max (val: any, ruleVal: string, label?: string) {
@@ -26,7 +26,7 @@ export default {
     }
     return {
       pass: parseFloat(val.toString()) >= parseFloat(ruleVal),
-      msg: `必须大于${label || ruleVal}`
+      msg: `必须大于等于${label || ruleVal}`
     }
   }
 }

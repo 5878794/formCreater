@@ -2,11 +2,13 @@ import { formItemType } from '../../input/input.type'
 import guid from './guid'
 import { cloneDeep } from 'lodash'
 import getInitSubmitData from './getInitSubmitData'
+import ruleReverseCheck from './getRuleReverseCheckData'
 
 // 遍历数据添加guid
 const handlerData = (setting: formItemType[], cache: any, serverData: any, uploadFn: any, showBigImageFn: any) => {
   const data = cloneDeep(setting)
   const newServerData = cloneDeep(serverData)
+  const ruleReverseCheckData = {}
 
   const fn = (settings: formItemType[], parentKey: string[]) => {
     // eslint-disable-next-line array-callback-return
@@ -26,6 +28,8 @@ const handlerData = (setting: formItemType[], cache: any, serverData: any, uploa
         }
       }
 
+      ruleReverseCheck(item, ruleReverseCheckData)
+
       // 未配置的，应用全局uploadFn
       if (item.type === 'file' || item.type === 'img') {
         item.uploadFn = item.uploadFn || uploadFn
@@ -43,6 +47,7 @@ const handlerData = (setting: formItemType[], cache: any, serverData: any, uploa
 
   cache.submitData = getInitSubmitData(newServerData, data)
   cache.data = data
+  cache.ruleReverseCheck = ruleReverseCheckData
 }
 
 export default handlerData

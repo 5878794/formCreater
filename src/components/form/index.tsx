@@ -3,6 +3,7 @@ import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
 import myRule from '../input/fn/rule'
+import reverseCheck from './fn/reverseCheck'
 
 export default defineComponent({
   components: { group },
@@ -43,7 +44,11 @@ export default defineComponent({
       (myRule as any)[key] = val
     }
 
-    const cache = reactive({ data: [], submitData: {} })
+    const cache = reactive({
+      data: [],
+      submitData: {},
+      ruleReverseCheck: {}
+    })
     const handlerDataFn = () => {
       handlerData(
         props.formSetting as formItemType[],
@@ -79,8 +84,9 @@ export default defineComponent({
     }
 
     const changeFn = (id: string) => {
-      const data = getData()
+      reverseCheck(id, cache.ruleReverseCheck, root)
 
+      const data = getData()
       cache.submitData = data
       emit('change', {
         id: id,
