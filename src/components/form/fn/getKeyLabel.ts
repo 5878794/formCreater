@@ -1,5 +1,9 @@
-export default function (key: string, formObj: any) {
-  const keyLv = key.split('.')
+import getRealId from './getRealId'
+
+export default function (key: string, formObj: any, rowIndex: any[]) {
+  let realKey = getRealId(key, rowIndex)
+  realKey = realKey.replace(/\[/ig, '.[')
+  const keyLv = realKey.split('.')
 
   let obj = formObj.proxy
   let back = ''

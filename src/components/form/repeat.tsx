@@ -47,7 +47,6 @@ export default defineComponent({
     }
 
     const find = (key: string) => {
-      // TODO
       const refValue = showItems.get(key)
       const domRef = _this!.proxy?.$refs[refValue] as any
       return domRef
@@ -76,9 +75,9 @@ export default defineComponent({
   render () {
     this.showItems.clear()
 
-    const createGroup = (children: formItemType[], data: any, id: string, i: number[]) => {
+    const createGroup = (children: formItemType[], data: any, id: string, i: number[], showItemKey: string) => {
       const tag = group
-      this.showItems.set(id, id)
+      this.showItems.set(showItemKey, id)
       return <tag
         id={id}
         ref={id}
@@ -93,7 +92,6 @@ export default defineComponent({
     }
 
     const repeatNumber = parseInt(getKeyValue(this.repeatBy, this.submitData, this.rowIndex)) || 0
-    console.log(repeatNumber)
     return <div class={[formStyle.form_item, '__repeat__']}>
       {new Array(repeatNumber).fill('').map((item, i) => {
         const thisRowIndex = JSON.parse(JSON.stringify(this.rowIndex))
@@ -102,7 +100,8 @@ export default defineComponent({
           this.formSetting as formItemType[],
           this.serverData[i],
           this.id + '_' + i,
-          thisRowIndex
+          thisRowIndex,
+          '[' + i + ']' // 用于find的查找
         )
       })}
     </div>

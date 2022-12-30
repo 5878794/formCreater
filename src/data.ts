@@ -51,7 +51,7 @@ const setting = [
         type: 'text',
         label: 'rep1.d',
         key: 'd',
-        value: '',
+        value: '1',
         style: '',
         labelWidth: ''
       },
@@ -63,8 +63,18 @@ const setting = [
         children: [
           {
             type: 'text',
-            label: 'rep2.d',
+            label: 'rep2.j',
             key: 'j',
+            value: '1',
+            style: '',
+            labelWidth: ''
+          },
+          {
+            type: 'text',
+            label: 'rep2.k',
+            when: 'repeat[row].rep1[row].j=1',
+            rule: 'max:repeat[row].rep1[row].j',
+            key: 'k',
             value: '',
             style: '',
             labelWidth: ''

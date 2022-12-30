@@ -24,7 +24,7 @@ export default function (rule: string, val: any, formData: any, formObj: any, ro
         // 是数字
       } else {
         // 是key
-        label = getKeyLabel(ruleVal, formObj)
+        label = getKeyLabel(ruleVal, formObj, rowIndex)
         ruleVal = getKeyValue(ruleVal, formData, rowIndex)
       }
     }
