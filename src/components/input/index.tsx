@@ -65,7 +65,7 @@ export default defineComponent({
     // 创建验证函数
     const { checkFiled } = createCheckFiledFn(cache, root, getData)
     // 创建输入框函数
-    const { createInput } = createInputFn(cache, checkFiled)
+    const { createInput } = createInputFn(cache, checkFiled, root)
     // 创建非编辑状态时的div
     const { createDiv } = createDivFn(cache)
     // 创建单位
@@ -105,16 +105,21 @@ export default defineComponent({
   },
   render () {
     const tag = ElFormItem
+
+    const labelWidth = (this.param!.type === 'button') ? 0 : this.param!.labelWidth
+    const label = (this.param!.type === 'button') ? '' : this.param!.label
+    const buttonClass = (this.param!.type === 'button') ? inputStyle.button : ''
+
     return <div
       class={['input_item', inputStyle.input_item]}
       style={this.param!.style}
     >
       <tag
         error={this.param!.errMsg}
-        label-width={this.param!.labelWidth}
-        label={this.param!.label}
+        label-width={labelWidth}
+        label={label}
         prop={this.param!.key}
-        class={[boxStyle.box_hlc]}
+        class={[boxStyle.box_hlc, buttonClass]}
       >
         {this.canMdf && this.createInput()}
         {this.canMdf && this.createUnit()}

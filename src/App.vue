@@ -31,7 +31,8 @@ import bInput from './components/input/index'
 //   }
 // })
 
-// TODO Button table addList gis 自定义组件
+// TODO table addList gis 自定义组件
+// TODO 刷新有问题、 补changeFn到配置中
 
 // export default class App extends Vue {
 // }
@@ -80,7 +81,7 @@ export default defineComponent({
         options: [{ label: 'aaa', value: '1' }, { label: 'bbb', value: '2' }]
       })
       bb.find('b').setValue('1')
-      bb.find('group').find('z').setValue('asdfasdf.jpg,1.jpg,2.jpg')
+      // bb.find('group').find('z').setValue('asdfasdf.jpg,1.jpg,2.jpg')
     }
     const getData1 = () => {
       const bb = test.value as any

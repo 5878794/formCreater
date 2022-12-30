@@ -30,7 +30,9 @@ export default defineComponent({
       const back: any = {}
       showItems.forEach((value, key) => {
         const domRef = _this!.proxy?.$refs[value] as any
-        back[key] = (domRef && domRef.getData) ? domRef.getData() : ''
+        if (domRef && domRef.type !== 'button') {
+          back[key] = (domRef && domRef.getData) ? domRef.getData() : ''
+        }
       })
       return back
     }
@@ -103,6 +105,7 @@ export default defineComponent({
         case 'password':
         case 'file':
         case 'img':
+        case 'button':
         case 'select': {
           const data = serverData[item.key]
           return <my-input

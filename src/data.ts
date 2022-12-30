@@ -1,3 +1,4 @@
+
 const setting = [
   {
     type: 'text',
@@ -18,6 +19,9 @@ const setting = [
         pass: (parseFloat(val) > 0),
         msg: '未通过'
       }
+    },
+    changeFn (val: any, formObj: any, formData: any) {
+      console.log(val, formObj, formData)
     }
   },
   {
@@ -32,13 +36,25 @@ const setting = [
     placeholder: '',
     options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }]
   },
+
+  {
+    type: 'button',
+    label: '按钮',
+    style: 'margin-left:100px; width:100px;',
+    buttonIcon: 'AddLocation',
+    clickFn: (formObj: any, formData: any) => {
+      console.log('button click')
+      console.log(formObj, formData)
+      formObj.find('a').setValue('2')
+    }
+  },
   {
     type: 'time',
     label: 'test',
     key: 'f',
     when: 'b=1',
     value: '1671862422033',
-    style: '',
+    style: 'width:300px;',
     labelWidth: ''
   }
   // {

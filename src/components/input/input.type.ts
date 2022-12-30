@@ -50,9 +50,10 @@ export interface formItemType {
   createByForm?: boolean, // 是否是由form组件创建
   unitValObj?: unitValueObjType, // 内部使用 当前单位的值
   isUploading?: boolean, // 内部使用  文件是否上传中
+  buttonIcon?: string, // button的图标 @element-plus/icons-vue 中的名字
 
   ruleFn?: (value: any, formData: any) => checkResultType, // 验证函数
-  clickFn?: (formObj: any, formData: any) => Promise<any>, // button 点击触发
+  clickFn?: (formObj: any, formData: any) => void, // button 点击触发
   uploadFn?: (file: File) => Promise<uploadRsType>, // file、img 上传时执行
   changeFn?: (value: any, formObj: any, formData: any) => void, // 值变化时执行
   showBigImageFn?: (src: string) => void // 点击查看大图接口函数

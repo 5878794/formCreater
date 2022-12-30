@@ -51,4 +51,15 @@
         }
     }
 
+    .button {
+        :global(.el-form-item__content) {
+            flex: unset !important;
+        }
+
+        :global(.el-icon) {
+            position: relative;
+            top: -1px;
+        }
+    }
+
 }

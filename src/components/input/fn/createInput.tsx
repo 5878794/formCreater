@@ -10,11 +10,11 @@ inputFiles.keys().forEach((key:any) => {
 })
 
 // 创建各种输入框
-export default function (cache: inputCacheType, checkFiled: any) {
+export default function (cache: inputCacheType, checkFiled: any, root: any) {
   const createInput = () => {
     const type = cache.param!.type
     if (inputs[type]) {
-      return inputs[type](cache, checkFiled)
+      return inputs[type](cache, checkFiled, root)
     } else {
       console.error('input类型未找到：' + type)
       return null
