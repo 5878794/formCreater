@@ -1,4 +1,4 @@
-import { defineComponent, ref, getCurrentInstance, provide, reactive, toRefs, watch } from 'vue'
+import { defineComponent, ref, getCurrentInstance, provide, reactive, toRefs, watch, nextTick } from 'vue'
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
@@ -85,7 +85,6 @@ export default defineComponent({
 
     const changeFn = (id: string) => {
       reverseCheck(id, cache.ruleReverseCheck, root)
-
       const data = getData()
       cache.submitData = data
       emit('change', {
@@ -94,7 +93,13 @@ export default defineComponent({
       })
     }
 
-    expose({ getData, checkForm, find, checkAndGetData, changeFn })
+    const refresh = () => {
+      nextTick(() => {
+        cache.submitData = getData()
+      })
+    }
+
+    expose({ getData, checkForm, find, checkAndGetData, changeFn, refresh })
     return {
       ...toRefs(cache),
       getData,
@@ -102,6 +107,7 @@ export default defineComponent({
       find,
       checkAndGetData,
       changeFn,
+      refresh,
       main
     }
   },

@@ -1,4 +1,4 @@
-import { defineComponent, getCurrentInstance } from 'vue'
+import { defineComponent, getCurrentInstance, inject, onMounted } from 'vue'
 import myInput from '../input/index'
 import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
@@ -22,6 +22,7 @@ export default defineComponent({
     rowIndex: { type: Array, default: () => ([]) }
   },
   setup (props, { expose }) {
+    const root = inject('root')
     const showItems = new Map()
     const _this = getCurrentInstance()
 
@@ -62,6 +63,10 @@ export default defineComponent({
 
       }
     }
+
+    onMounted(() => {
+      (root as any).proxy.refresh()
+    })
 
     expose({ getData, checkFiled, find, checkAndGetData })
     return {
