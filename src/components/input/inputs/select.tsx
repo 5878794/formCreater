@@ -4,7 +4,7 @@ import { ElSelect, ElOption } from 'element-plus'
 
 export default function (cache: inputCacheType, checkFiled: () => boolean) {
   const createOption = () => {
-    return cache.param?.options!.map((opt) => {
+    return cache.param?.options?.map((opt) => {
       return <ElOption
         label={opt.label}
         value={opt.value}
@@ -22,8 +22,8 @@ export default function (cache: inputCacheType, checkFiled: () => boolean) {
       multiple={false}
       size="default"
       class={[inputStyle.input]}
-      disabled={cache.param!.disabled}
-      placeholder={cache.param!.placeholder}
+      disabled={cache.param?.disabled}
+      placeholder={cache.param?.placeholder}
     >
       {
         createOption()

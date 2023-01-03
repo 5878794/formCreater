@@ -9,9 +9,11 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
       const dist = props.propData.unitOption
       const showUnit = props.propData.unit
       const showUnitVal = dist.find((item: selectItemType) => (item.label === showUnit))?.value ?? '0'
-      cache.param!.unitValObj = {
-        value: showUnitVal,
-        oldValue: showUnitVal
+      if (cache.param) {
+        cache.param.unitValObj = {
+          value: showUnitVal,
+          oldValue: showUnitVal
+        }
       }
     }
   }
@@ -30,8 +32,8 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
 
   // 对传入的服务器数据覆盖现有值
   const createValObj = () => {
-    cache.valObj.value = props.serverData ? props.serverData : cache.param!.value
-    cache.valObj.bindValue = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param!.value)
+    cache.valObj.value = props.serverData ? props.serverData : cache.param?.value
+    cache.valObj.bindValue = props.serverData ? dataChangeFn(props.serverData) : dataChangeFn(cache.param?.value)
 
     handlerStamp()
   }
@@ -48,10 +50,12 @@ export default function (props: any, cache: inputCacheType, dataChangeFn:any, sh
     // 将传入的数据合并到现有的缓存中
     cache.param = Object.assign(cache.param || {}, thisPropData)
     // 对未传入labelWidth的取用公共的设置
-    cache.param!.labelWidth = cache.param!.labelWidth || props.labelWidth
-    cache.param!.isUploading = false
-    cache.param!.disabled = (typeof cache.param!.disabled === 'boolean') ? cache.param!.disabled : false
-    cache.param!.createByForm = props.createByForm
+    if (cache.param) {
+      cache.param.labelWidth = cache.param?.labelWidth || props.labelWidth
+      cache.param.isUploading = false
+      cache.param.disabled = (typeof cache.param?.disabled === 'boolean') ? cache.param?.disabled : false
+      cache.param.createByForm = props.createByForm
+    }
   }
 
   const initFn = () => {

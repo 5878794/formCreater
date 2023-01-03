@@ -5,8 +5,8 @@ import boxStyle from '../css/box.module.scss'
 
 export default function (cache: inputCacheType) {
   const createUnit = () => {
-    const showUnit = cache.param!.unit || ''
-    const dist = cache.param!.unitOption || []
+    const showUnit = cache.param?.unit || ''
+    const dist = cache.param?.unitOption || []
 
     if (!showUnit) {
       return null
@@ -20,22 +20,21 @@ export default function (cache: inputCacheType) {
   }
 
   const createUnitText = () => {
-    return <div class={['unitText', boxStyle.box_hcc, inputStyle.textUnit]}>{cache.param!.unit}</div>
+    return <div class={['unitText', boxStyle.box_hcc, inputStyle.textUnit]}>{cache.param?.unit}</div>
   }
 
   const createUnitSelect = () => {
-    const tag = ElSelect
-    return <tag
+    return <ElSelect
       size="default"
       class={[inputStyle.selectUnit, 'selectUnit']}
-      v-model={cache.param!.unitValObj!.value}
+      v-model={cache.param?.unitValObj?.value}
       multiple={false}
       onChange={function () {
         unitChange()
       }}
     >
       {createUnitOption()}
-    </tag>
+    </ElSelect>
   }
 
   const unitChange = () => {
@@ -56,11 +55,14 @@ export default function (cache: inputCacheType) {
   }
 
   const createUnitOption = () => {
-    const tag = ElOption
     return <>
       {
-        cache.param!.unitOption!.map((rs: selectItemType) => {
-          return <tag label={rs.label} value={rs.value} key={rs.value}></tag>
+        cache.param?.unitOption?.map((rs: selectItemType) => {
+          return <ElOption
+            label={rs.label}
+            value={rs.value}
+            key={rs.value}
+          />
         })
       }
     </>

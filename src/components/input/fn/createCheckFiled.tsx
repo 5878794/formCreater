@@ -3,8 +3,11 @@ import ruleFunction from './ruleFn'
 
 export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
   const checkFiled = () => {
-    cache.param!.errMsg = ''
-    const ruleFn = cache.param!.ruleFn || function () {
+    if (cache.param) {
+      cache.param.errMsg = ''
+    }
+
+    const ruleFn = cache.param?.ruleFn || function () {
       return { pass: true }
     }
     const val = getDataFn()
@@ -17,7 +20,9 @@ export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
     if (cache.param?.rule && cache.param?.createByForm) {
       const rs = ruleFunction(cache.param?.rule, val, formData, formObj, cache.rowIndex!)
       if (!rs.pass) {
-        cache.param!.errMsg = rs.msg
+        if (cache.param) {
+          cache.param.errMsg = rs.msg
+        }
         return false
       }
     }
@@ -26,7 +31,9 @@ export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
     const rs = ruleFn(val, formData)
 
     if (!rs.pass) {
-      cache.param!.errMsg = rs.msg
+      if (cache.param) {
+        cache.param.errMsg = rs.msg
+      }
     } else {
       cache.valObj.value = val
     }

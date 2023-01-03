@@ -35,7 +35,7 @@ export default defineComponent({
   },
   emits: ['change'],
   setup (props, { emit, expose }) {
-    const root: any = inject('root')
+    const root = inject('root')
     const cache = reactive<inputCacheType>({
       rowIndex: props.rowIndex as number[],
       param: null,
@@ -111,27 +111,25 @@ export default defineComponent({
     }
   },
   render () {
-    const tag = ElFormItem
-
-    const labelWidth = (this.param!.type === 'button') ? 0 : this.param!.labelWidth
-    const label = (this.param!.type === 'button') ? '' : this.param!.label
-    const buttonClass = (this.param!.type === 'button') ? inputStyle.button : ''
+    const labelWidth = (this.param?.type === 'button') ? 0 : this.param?.labelWidth
+    const label = (this.param?.type === 'button') ? '' : this.param?.label
+    const buttonClass = (this.param?.type === 'button') ? inputStyle.button : ''
 
     return <div
       class={['input_item', inputStyle.input_item]}
-      style={this.param!.style}
+      style={this.param?.style}
     >
-      <tag
-        error={this.param!.errMsg}
+      <ElFormItem
+        error={this.param?.errMsg}
         label-width={labelWidth}
         label={label}
-        prop={this.param!.key}
+        prop={this.param?.key}
         class={[boxStyle.box_hlc, buttonClass]}
       >
         {this.canMdf && this.createInput()}
         {this.canMdf && this.createUnit()}
         {!this.canMdf && this.createDiv()}
-      </tag>
+      </ElFormItem>
     </div>
   }
 })
