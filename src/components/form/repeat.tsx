@@ -88,7 +88,7 @@ export default defineComponent({
         canMdf={this.canMdf}
         submitData={this.submitData}
         rowIndex={i}
-      ></tag>
+      />
     }
 
     const repeatNumber = parseInt(getKeyValue(this.repeatBy, this.submitData, this.rowIndex as number[])) || 0

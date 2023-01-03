@@ -119,7 +119,7 @@ export default defineComponent({
             createByForm={true}
             data-key-lv={item.__keyLv__}
             rowIndex={this.rowIndex}
-          ></my-input>
+          />
         }
         case 'group': {
           const key = item.key
@@ -157,7 +157,7 @@ export default defineComponent({
                 repeatBy={item.repeatBy}
                 submitData={this.submitData}
                 rowIndex={this.rowIndex}
-              ></tag>
+              />
             </div>
           } else {
             console.error('repeat 组件未设置 repeatBy 属性')
@@ -180,7 +180,7 @@ export default defineComponent({
         canMdf={this.canMdf}
         submitData={this.submitData}
         rowIndex={this.rowIndex}
-      ></b-from>
+      />
     }
 
     const createList = (settings: any, serverData: any) => {

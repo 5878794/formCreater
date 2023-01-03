@@ -129,7 +129,7 @@ export default defineComponent({
         labelWidth={this.labelWidth}
         canMdf={this.canMdf}
         submitData={this.submitData}
-      ></group>
+      />
     </>
   }
 })
