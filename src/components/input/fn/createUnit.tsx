@@ -27,7 +27,7 @@ export default function (cache: inputCacheType) {
     return <ElSelect
       size="default"
       class={[inputStyle.selectUnit, 'selectUnit']}
-      v-model={cache.param?.unitValObj?.value}
+      v-model={cache.param!.unitValObj!.value}
       multiple={false}
       onChange={function () {
         unitChange()
@@ -61,8 +61,7 @@ export default function (cache: inputCacheType) {
           return <ElOption
             label={rs.label}
             value={rs.value}
-            key={rs.value}
-          />
+            key={rs.value}/>
         })
       }
     </>
