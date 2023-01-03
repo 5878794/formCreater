@@ -1,18 +1,17 @@
 import { inputCacheType } from '../input.type'
-import inputStyle from '../css/inputStyle.module.scss'
 import { ElRadio, ElRadioGroup } from 'element-plus'
 
-export default function (cache: inputCacheType, checkFiled: any) {
+export default function (cache: inputCacheType, checkFiled: () => boolean) {
   const createInput = () => {
     return (
       <ElRadioGroup
         v-model={cache.valObj.bindValue}
-        disabled={cache.param!.disabled}
+        disabled={cache.param?.disabled}
         onChange={function () {
           checkFiled()
         }}>
         {
-          cache.param!.options!.map((item: any) => {
+          cache.param?.options?.map((item) => {
             return <ElRadio
               label={item.value}
             >{item.label}</ElRadio>

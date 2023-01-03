@@ -2,19 +2,18 @@ import { inputCacheType } from '../input.type'
 import inputStyle from '../css/inputStyle.module.scss'
 import { ElInput } from 'element-plus'
 
-export default function (cache: inputCacheType, checkFiled: any) {
-  const tag = ElInput
+export default function (cache: inputCacheType, checkFiled: () => boolean) {
   return (
-    <tag
-      onblur={function () {
+    <ElInput
+      onBlur={function () {
         checkFiled()
       }}
       type='password'
       v-model={cache.valObj.bindValue}
       class={[inputStyle.input]}
-      disabled={cache.param!.disabled}
-      placeholder={cache.param!.placeholder}
+      disabled={cache.param?.disabled}
+      placeholder={cache.param?.placeholder}
       show-password
-    ></tag>
+    />
   )
 }

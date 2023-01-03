@@ -19,11 +19,10 @@
 
 <script lang="ts">
 // import { Options, Vue } from 'vue-class-component'
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref } from 'vue'
 // import formCreate from './components/formCreate/index'
 import myForm from './components/form/index'
 import { data, setting } from './data'
-import bInput from './components/input/index'
 
 // @Options({
 //   components: {

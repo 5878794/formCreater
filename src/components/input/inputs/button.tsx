@@ -3,25 +3,24 @@ import inputStyle from '../css/inputStyle.module.scss'
 import { ElButton } from 'element-plus'
 import * as icons from '@element-plus/icons-vue'
 
-export default function (cache: inputCacheType, checkFiled: any, root: any) {
+export default function (cache: inputCacheType, checkFiled: () => boolean, root: any) {
   const clickFn = () => {
-    const fn = cache.param!.clickFn || function () {
+    const fn = cache.param?.clickFn || function () {
       //
     }
     fn(root.proxy, root.proxy.getData())
   }
 
-  const tag = ElButton
-  const icon = cache.param!.buttonIcon ? (icons as any)[cache.param!.buttonIcon] : ''
+  // const tag = ElButton
+  const icon = cache.param?.buttonIcon ? (icons as any)[cache.param?.buttonIcon] : ''
   return (
-    <tag
+    <ElButton
       v-model={cache.valObj.bindValue}
       class={[inputStyle.input]}
-      disabled={cache.param!.disabled}
-      placeholder={cache.param!.placeholder}
+      disabled={cache.param?.disabled}
       icon={icon}
       type='primary'
       onClick={clickFn}
-    >{cache.param!.label}</tag>
+    >{cache.param?.label}</ElButton>
   )
 }

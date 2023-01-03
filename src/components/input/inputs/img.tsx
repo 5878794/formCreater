@@ -1,36 +1,42 @@
 import { inputCacheType } from '../input.type'
 import inputStyle from '../css/inputStyle.module.scss'
-import { ElUpload, UploadFile, ElDialog } from 'element-plus'
+import { ElUpload, UploadFile, UploadRequestOptions } from 'element-plus'
 
-export default function (cache: inputCacheType, checkFiled: any) {
+export default function (cache: inputCacheType, checkFiled: () => boolean) {
   // 点击查看图片
   const handlePictureCardPreview = (file: UploadFile) => {
-    const url = file.url!.toString()
+    const url = file.url?.toString() || ''
 
-    if (!cache.param!.showBigImageFn) {
+    if (!cache.param?.showBigImageFn) {
       console.error('未配置 showBigImageFn')
       return
     }
 
-    cache.param!.showBigImageFn(url)
+    cache.param?.showBigImageFn(url)
   }
   // 图片上传
-  const uploadRun = async (e: any) => {
+  const uploadRun = async (e: UploadRequestOptions) => {
     const file = e.file
     if (!cache.param?.uploadFn) {
       console.error(cache.param?.__keyLv__ + ' 未配置上传函数uploadFn！！')
       return
     }
-    cache.param!.isUploading = true
-    const src = await cache.param!.uploadFn(file).catch((e: any) => {
+    if (typeof cache.param?.isUploading === 'boolean') {
+      cache.param.isUploading = true
+    }
+
+    const src = await cache.param?.uploadFn(file).catch(() => {
       return ''
     })
-    cache.param!.isUploading = false
+
+    if (typeof cache.param?.isUploading === 'boolean') {
+      cache.param.isUploading = false
+    }
 
     return src
   }
   // 上传成功
-  const uploadOk = (src: any, obj: any) => {
+  const uploadOk = (src: string, obj: UploadFile) => {
     // 上传失败处理
     if (!src) {
       const n = cache.valObj.bindValue.indexOf(obj)
@@ -41,7 +47,7 @@ export default function (cache: inputCacheType, checkFiled: any) {
     checkFiled()
   }
   //  删除时
-  const handleRemove = (obj: any, list: any) => {
+  const handleRemove = () => {
     checkFiled()
   }
 
@@ -49,14 +55,13 @@ export default function (cache: inputCacheType, checkFiled: any) {
     return true
   }
 
-  const tag = ElUpload
   return <>
-    <tag
+    <ElUpload
       class={[inputStyle.img_wall]}
-      disabled={cache.param!.disabled}
+      disabled={cache.param?.disabled}
       on-preview={handlePictureCardPreview}
       action="#"
-      limit={cache.param?.limit || 10}
+      limit={parseInt(cache.param?.limit ?? '10')}
       accept='image/*'
       http-request={uploadRun}
       before-upload={checkFileType}
@@ -66,6 +71,6 @@ export default function (cache: inputCacheType, checkFiled: any) {
       on-success={uploadOk}
       on-remove={handleRemove}
     >
-    </tag>
+    </ElUpload>
   </>
 }
