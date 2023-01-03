@@ -3,7 +3,7 @@ import getKeyValue from './getKeyValue'
 export default function (allServerData: any, json: any) {
   const allSubmitData: any = {}
 
-  const fn = (nowJson: any[], serverData: any, rowIndex: any[], submitData: any) => {
+  const fn = (nowJson: any[], serverData: any, rowIndex: number[], submitData: any) => {
     nowJson.map((item: any) => {
       const isTable = (item.type === 'table' || item.type === 'repeat')
       const isGroup = (item.type === 'group')

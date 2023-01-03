@@ -91,7 +91,7 @@ export default defineComponent({
       ></tag>
     }
 
-    const repeatNumber = parseInt(getKeyValue(this.repeatBy, this.submitData, this.rowIndex)) || 0
+    const repeatNumber = parseInt(getKeyValue(this.repeatBy, this.submitData, this.rowIndex as number[])) || 0
     return <div class={[formStyle.form_item, '__repeat__']}>
       {new Array(repeatNumber).fill('').map((item, i) => {
         const thisRowIndex = JSON.parse(JSON.stringify(this.rowIndex))

@@ -37,7 +37,7 @@ export default defineComponent({
   setup (props, { emit, expose }) {
     const root: any = inject('root')
     const cache = reactive<inputCacheType>({
-      rowIndex: props.rowIndex,
+      rowIndex: props.rowIndex as number[],
       param: null,
       valObj: {
         // value: '',

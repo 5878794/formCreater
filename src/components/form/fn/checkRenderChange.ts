@@ -1,7 +1,7 @@
 import { onMounted, onUpdated } from 'vue'
 
 // 检查渲染列表是否变化
-export default function (showItems: any, root: any) {
+export default function (showItems: Map<string, string>, root: any) {
   let oldShowItems: string[] = []
   onMounted(() => {
     oldShowItems = [...showItems.values()].sort();

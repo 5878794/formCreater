@@ -1,9 +1,9 @@
-import { checkResultType } from '../input.type'
+import { checkResultType, formDataType } from '../input.type'
 import myRule from './rule'
 import getKeyValue from '../../form/fn/getKeyValue'
 import getKeyLabel from '../../form/fn/getKeyLabel'
 
-export default function (rule: string, val: any, formData: any, formObj: any, rowIndex: any[]): checkResultType {
+export default function (rule: string, val: any, formData: formDataType, formObj: any, rowIndex: number[]): checkResultType {
   if (!rule) {
     return { pass: true, msg: '' }
   }

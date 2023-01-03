@@ -86,7 +86,7 @@ export default defineComponent({
         const temp = item.when.split('=')
         const whenKey = temp[0] // id是可能带.的有层级
         const whenVal = temp[1]
-        const nowData = getKeyValue(whenKey, this.submitData, this.rowIndex) || ''
+        const nowData = getKeyValue(whenKey, this.submitData, this.rowIndex as number[]) || ''
         if (nowData.toString() !== whenVal) {
           return null
         }

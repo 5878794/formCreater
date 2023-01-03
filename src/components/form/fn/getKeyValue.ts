@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash'
 import getRealId from './getRealId'
 
-export default function (key: string, data: any, rowIndex: any[]) {
+export default function (key: string, data: any, rowIndex: number[]) {
   let newData = cloneDeep(data)
   const realId = getRealId(key, rowIndex)
   const keyLv = realId.split(/\[|\]\.|\./ig)

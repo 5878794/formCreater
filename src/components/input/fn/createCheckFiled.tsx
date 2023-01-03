@@ -1,4 +1,4 @@
-import { inputCacheType } from '../input.type'
+import { inputCacheType, formDataType } from '../input.type'
 import ruleFunction from './ruleFn'
 
 export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
@@ -8,7 +8,7 @@ export default function (cache: inputCacheType, formObj: any, getDataFn: any) {
       return { pass: true }
     }
     const val = getDataFn()
-    let formData: any = {}
+    let formData: formDataType = {}
     if (cache.param?.createByForm) {
       formData = formObj.proxy.getData()
     }
