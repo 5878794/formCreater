@@ -13,5 +13,12 @@ export default function (cache: inputCacheType, root: any, emit: any) {
     } else {
       emit('change', cache.valObj.value)
     }
+
+    if (cache.param?.changeFn) {
+      cache.param?.changeFn(
+        cache.valObj.value,
+        root.proxy,
+        root.proxy.getData())
+    }
   }, { deep: true })
 }

@@ -3,7 +3,7 @@
  date:2022/11/3
  */
 
-import { defineComponent, watch, reactive, toRefs, inject } from 'vue'
+import { defineComponent, reactive, toRefs, inject, onMounted, getCurrentInstance } from 'vue'
 import { inputCacheType } from './input.type'
 import inputStyle from './css/inputStyle.module.scss'
 import 'element-plus/dist/index.css'
@@ -78,6 +78,13 @@ export default defineComponent({
     const getParam = () => {
       return cloneDeep(cache.param)
     }
+
+    onMounted(() => {
+      if (cache.param?.setupFn) {
+        const obj = getCurrentInstance()?.proxy
+        cache.param?.setupFn(obj)
+      }
+    })
 
     expose({
       getData,

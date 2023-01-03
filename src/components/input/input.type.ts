@@ -53,6 +53,7 @@ export interface formItemType {
   buttonIcon?: string, // button的图标 @element-plus/icons-vue 中的名字
 
   ruleFn?: (value: any, formData: any) => checkResultType, // 验证函数
+  setupFn?: (obj: any) => void, // 初始化时执行
   clickFn?: (formObj: any, formData: any) => void, // button 点击触发
   uploadFn?: (file: File) => Promise<uploadRsType>, // file、img 上传时执行
   changeFn?: (value: any, formObj: any, formData: any) => void, // 值变化时执行

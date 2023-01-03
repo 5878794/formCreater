@@ -33,7 +33,12 @@ const setting = [
     labelWidth: '',
     disabled: '',
     placeholder: '',
-    options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }]
+    options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }],
+    setupFn (obj: any) {
+      obj.setParam({
+        options: [{ label: 'aaaa', value: '1' }, { label: 'bbbb', value: '2' }]
+      })
+    }
   },
 
   {
