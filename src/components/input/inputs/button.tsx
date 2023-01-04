@@ -19,7 +19,7 @@ export default function (cache: inputCacheType, checkFiled: () => boolean, root:
       class={[inputStyle.input]}
       disabled={cache.param?.disabled}
       icon={icon}
-      type='primary'
+      type={cache.param?.buttonType as any ?? 'primary'}
       onClick={clickFn}
     >{cache.param?.label}</ElButton>
   )

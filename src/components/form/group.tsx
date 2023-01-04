@@ -1,9 +1,10 @@
-import { defineComponent, getCurrentInstance, inject, onMounted, onUpdated } from 'vue'
+import { defineComponent, getCurrentInstance, inject } from 'vue'
 import myInput from '../input/index'
 import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
 import { formItemType } from '@/components/input/input.type'
 import repeatDom from './repeat'
+import addListDom from './addList'
 import checkRenderChange from './fn/checkRenderChange'
 
 export default defineComponent({
@@ -163,6 +164,28 @@ export default defineComponent({
             console.error('repeat 组件未设置 repeatBy 属性')
             return null
           }
+        }
+        case 'addList': {
+          const key = item.key
+          const data = serverData[key] || []
+          const tag = addListDom
+          return <div
+            style={item.style}
+            id={item.__id__}
+            data-key-lv={item.__keyLv__}
+          >
+            <tag
+              id={item.__id__}
+              ref={item.__id__}
+              key={item.__id__}
+              formSetting={item.inputs}
+              serverData={data}
+              labelWidth={this.labelWidth}
+              canMdf={this.canMdf}
+              submitData={this.submitData}
+              rowIndex={this.rowIndex}
+            />
+          </div>
         }
         default:
           console.error(type + ' 不存在！')

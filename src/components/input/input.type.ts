@@ -1,3 +1,4 @@
+
 export interface selectItemType {
   label: string,
   value: string
@@ -55,6 +56,7 @@ export interface formItemType {
   unitValObj?: unitValueObjType, // 内部使用 当前单位的值
   isUploading?: boolean, // 内部使用  文件是否上传中
   buttonIcon?: string, // button的图标 @element-plus/icons-vue 中的名字
+  buttonType?: string, // button的类型
 
   ruleFn?: (value: any, formData: formDataType) => checkResultType, // 验证函数
   setupFn?: (obj: any) => void, // 初始化时执行

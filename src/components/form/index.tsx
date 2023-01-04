@@ -8,6 +8,8 @@ import {
   watch,
   nextTick
 } from 'vue'
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import handlerData from './fn/handlerData'
 import { formItemType } from '../input/input.type'
 import group from './group'
@@ -47,6 +49,11 @@ export default defineComponent({
   setup (props, { expose, emit }) {
     const root = getCurrentInstance()
     provide('root', root)
+    provide('fns', {
+      uploadFn: props.uploadFn,
+      showBigImageFn: props.uploadFn,
+      rule: props.rule
+    })
 
     // rule合并
     for (const [key, val] of Object.entries(props.rule)) {
@@ -121,7 +128,7 @@ export default defineComponent({
     }
   },
   render () {
-    return <>
+    return <ElConfigProvider locale={zhCn}>
       <group
         ref='main'
         formSetting={this.data}
@@ -130,6 +137,6 @@ export default defineComponent({
         canMdf={this.canMdf}
         submitData={this.submitData}
       />
-    </>
+    </ElConfigProvider>
   }
 })

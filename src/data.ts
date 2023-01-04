@@ -60,6 +60,46 @@ const setting = [
     value: '1671862422033',
     style: 'width:300px;',
     labelWidth: ''
+  },
+  {
+    type: 'group',
+    key: 'g1',
+    children: [
+      {
+        type: 'time',
+        label: 'test',
+        key: 'f1',
+        value: '1671862422033',
+        style: 'width:300px;',
+        labelWidth: ''
+      }
+    ]
+  },
+  {
+    type: 'addList',
+    key: 'addList',
+    value: [],
+    style: 'width:600px;',
+    inputs: [
+      {
+        type: 'select',
+        options: [{ label: 'a', value: '1' }, { label: 'b', value: '2' }],
+        label: 'a',
+        key: 'a',
+        value: '1',
+        style: '',
+        labelWidth: ''
+      },
+      {
+        type: 'text',
+        label: 'b',
+        key: 'b',
+        value: '2',
+        style: '',
+        labelWidth: '',
+        when: 'a=1'
+      }
+    ]
   }
   // {
   //   type: 'repeat',
