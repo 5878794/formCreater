@@ -2,7 +2,7 @@ import { defineComponent, getCurrentInstance } from 'vue'
 import group from './group'
 import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
-import { formItemType } from '@/components/input/input.type'
+import { formItemType } from '../input/input.type'
 
 export default defineComponent({
   components: { group },
