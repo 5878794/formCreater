@@ -75,11 +75,14 @@ export default defineComponent({
 
     const change1 = () => {
       const bb = test.value as any
-      bb.find('b').setParam({
+      // bb.find('b').setParam({
+      //   options: [{ label: 'aaa', value: '1' }, { label: 'bbb', value: '2' }]
+      // })
+      // bb.find('b').setValue('1')
+      // bb.find('group').find('z').setValue('asdfasdf.jpg,1.jpg,2.jpg')
+      bb.find('addList').find('a').setParam({
         options: [{ label: 'aaa', value: '1' }, { label: 'bbb', value: '2' }]
       })
-      bb.find('b').setValue('1')
-      // bb.find('group').find('z').setValue('asdfasdf.jpg,1.jpg,2.jpg')
     }
     const getData1 = () => {
       const bb = test.value as any

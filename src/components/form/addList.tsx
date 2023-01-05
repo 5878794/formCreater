@@ -1,4 +1,4 @@
-import { defineComponent, watch, inject, ref, reactive, toRefs } from 'vue'
+import { defineComponent, inject, ref, reactive, toRefs } from 'vue'
 import formStyle from './css/formStyle.module.scss'
 import { formItemType } from '@/components/input/input.type'
 import formDom from './index'
@@ -6,8 +6,8 @@ import button from '../input/index'
 import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
 import handlerData from './fn/addList_handlerData'
 import guid from './fn/guid'
-
-// TODO 未完成 分页功能、获取数据等
+import { cloneDeep } from 'lodash'
+import { Delete } from '@element-plus/icons-vue'
 
 export default defineComponent({
   name: 'add-list',
@@ -24,18 +24,19 @@ export default defineComponent({
     id: { type: String, default: '' },
     pagination: { type: Boolean, default: true },
     submitData: { type: Object, default: () => ({}) },
-    rowIndex: { type: Array, default: () => ([]) }
+    rowIndex: { type: Array, default: () => ([]) },
+    pageSize: { type: Number, default: 10 }
   },
   setup (props, { expose }) {
     const root = inject('root')
     const fns = inject('fns')
-    const cache = reactive<{ data: any, show: any, formData: any, delIds: string[] }>({
+    const cache = reactive<{ data: any, show: any, delIds: string[], nowShow: any }>({
       data: [],
       show: [],
-      formData: {},
+      nowShow: [],
       delIds: []
     })
-    handlerData(
+    const createShowData = handlerData(
       props.serverData,
       props.formSetting as formItemType[],
       cache
@@ -58,6 +59,7 @@ export default defineComponent({
         back.__guid__ = guid()
       }
       cache.data.push(back)
+      refreshTotal()
     }
     const del = (guid?: string) => {
       const delIds = guid ? [guid] : cache.delIds
@@ -69,13 +71,27 @@ export default defineComponent({
         return null
       })
       cache.data = newData
+      refreshTotal()
+    }
+    const refreshTotal = () => {
+      totalPage.value = cache.data.length
+      const start = (currentPage.value - 1) * props.pageSize
+      const end = start + props.pageSize
+      createShowData()
+      cache.nowShow = cache.show.slice(start, end)
     }
 
     const currentPage = ref(1)
     const totalPage = ref(1)
+    refreshTotal()
 
     const getData = () => {
-      return []
+      const backData = cloneDeep(cache.data)
+      backData.map((rs: any) => {
+        delete rs.__guid__
+        return null
+      })
+      return backData
     }
 
     const checkFiled = () => {
@@ -83,7 +99,8 @@ export default defineComponent({
     }
 
     const find = (key: string) => {
-      //
+      const formDom = addListMainRef.value as any
+      return formDom.find(key)
     }
 
     const checkAndGetData = () => {
@@ -98,7 +115,7 @@ export default defineComponent({
     }
 
     const refreshFormData = (data: any) => {
-      cache.formData = data
+      // cache.formData = data
     }
     const selectionChangeFn = (ids: any) => {
       const back: string[] = []
@@ -108,8 +125,8 @@ export default defineComponent({
       })
       cache.delIds = back
     }
-    const handlerCurrentChangeFn = (page: any) => {
-      console.log(page)
+    const handlerCurrentChangeFn = () => {
+      refreshTotal()
     }
 
     expose({ getData, checkFiled, find, checkAndGetData })
@@ -138,7 +155,7 @@ export default defineComponent({
         uploadFn={(this.fns as any).uploadFn}
         showBigImageFn={(this.fns as any).showBigImageFn}
         ref="addListMainRef"
-        serverData={this.formData}
+        key="addListMainRef"
         formSetting={this.formSetting}
         labelWidth={this.labelWidth}
         rule={(this.fns as any).rule}
@@ -181,11 +198,12 @@ export default defineComponent({
     const renderTable = () => {
       return <el-table
         height='190'
-        data={this.show}
+        data={this.nowShow}
         tableLayout='fixed'
         onSelectionChange={this.selectionChangeFn}
       >
         <el-table-column type='selection' width='55px'/>
+        <el-table-column label='序号' property='__index__'/>
         {
           this.formSetting.map((item: any) => {
             return <el-table-column
@@ -203,7 +221,9 @@ export default defineComponent({
                 const fn = () => {
                   this.del(scope.row.__guid__)
                 }
-                return <div onClick={fn}>del</div>
+                const tag = Delete
+                return <tag style='color:red;width:1.2em;cursor:pointer;'/>
+                // return <div onClick={fn}>del</div>
               }
             }
           }
@@ -214,10 +234,11 @@ export default defineComponent({
     const renderPagination = () => {
       return <ElPagination
         v-model:currentPage={this.currentPage}
-        page-size='10'
+        page-size={this.pageSize}
         small={false}
         total={this.totalPage}
         layout='total,prev,pager,next'
+        onCurrent-change={this.handlerCurrentChangeFn}
       />
     }
 
@@ -225,7 +246,7 @@ export default defineComponent({
       {renderAddInputs()}
       {renderButton()}
       {renderTable()}
-      {this.pagination && renderPagination()}
+      {this.pagination && this.data.length > 0 && renderPagination()}
     </div>
   }
 })

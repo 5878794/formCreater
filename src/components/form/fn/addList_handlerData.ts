@@ -1,7 +1,6 @@
 import { formItemType } from '../../input/input.type'
 import guid from './guid'
 import { cloneDeep } from 'lodash'
-import { watch } from 'vue'
 
 export default function (serverData: any, formSetting: formItemType[], cache: any) {
   const data: any = cloneDeep(serverData)
@@ -29,9 +28,8 @@ export default function (serverData: any, formSetting: formItemType[], cache: an
     cache.show = show
   }
 
-  watch(() => cache.data, () => {
-    createShowData()
-  }, { deep: true })
-
   cache.data = data
+  createShowData()
+
+  return createShowData
 }
