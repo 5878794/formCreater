@@ -6,9 +6,9 @@ const setting = [
     key: 'a',
     value: 1,
     style: 'width:50%;',
-    labelWidth: '',
+    labelWidth: '60px',
     rule: 'required,max:group.z',
-    disabled: '',
+    disabled: true,
     placeholder: '',
     unit: 'mhz',
     unitOption: [{ value: '1', label: 'hz' }, { value: '1000', label: 'khz' }, { value: '1000000', label: 'mhz' }],
@@ -198,19 +198,19 @@ const setting = [
   //   style: '',
   //   labelWidth: ''
   // },
-  // {
-  //   type: 'radio',
-  //   label: 'test',
-  //   key: 'j',
-  //   value: '1',
-  //   options: [{
-  //     label: 'aa',
-  //     value: '0'
-  //   }, {
-  //     label: 'bb',
-  //     value: '1'
-  //   }]
-  // },
+  {
+    type: 'radio',
+    label: 'test',
+    key: 'j',
+    value: '1',
+    options: [{
+      label: 'aa',
+      value: '0'
+    }, {
+      label: 'bb',
+      value: '1'
+    }]
+  },
   // {
   //   type: 'img',
   //   when: 'group.z=123',
