@@ -1,6 +1,6 @@
 import { defineComponent, inject, ref, reactive, toRefs } from 'vue'
 import formStyle from './css/formStyle.module.scss'
-import { formItemType } from '@/components/input/input.type'
+import { formItemType } from '../input/input.type'
 import formDom from './index'
 import button from '../input/index'
 import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
@@ -8,6 +8,7 @@ import handlerData from './fn/addList_handlerData'
 import guid from './fn/guid'
 import { cloneDeep } from 'lodash'
 import { Delete } from '@element-plus/icons-vue'
+import boxStyle from '../input/css/box.module.scss'
 
 export default defineComponent({
   name: 'add-list',
@@ -25,7 +26,8 @@ export default defineComponent({
     pagination: { type: Boolean, default: true },
     submitData: { type: Object, default: () => ({}) },
     rowIndex: { type: Array, default: () => ([]) },
-    pageSize: { type: Number, default: 10 }
+    pageSize: { type: Number, default: 10 },
+    height: { type: Number, default: 200 }
   },
   setup (props, { expose }) {
     const root = inject('root')
@@ -78,7 +80,11 @@ export default defineComponent({
       const start = (currentPage.value - 1) * props.pageSize
       const end = start + props.pageSize
       createShowData()
-      cache.nowShow = cache.show.slice(start, end)
+      if (props.pagination) {
+        cache.nowShow = cache.show.slice(start, end)
+      } else {
+        cache.nowShow = cache.show
+      }
     }
 
     const currentPage = ref(1)
@@ -170,8 +176,8 @@ export default defineComponent({
       const addBtnParam = {
         type: 'button',
         label: '增加',
-        style: 'width:100px;',
         buttonIcon: 'CirclePlusFilled',
+        style: 'width:auto;',
         clickFn: () => {
           const rs = this.getAndCheckFormData()
           if (rs.pass) {
@@ -182,14 +188,14 @@ export default defineComponent({
       const delBtnParam = {
         type: 'button',
         label: '删除',
-        style: 'margin-left:100px; width:100px;',
+        style: 'margin-left:20px;width:auto;',
         buttonIcon: 'RemoveFilled',
         buttonType: 'danger',
         clickFn: () => {
           this.del()
         }
       }
-      return <div>
+      return <div class={[boxStyle.box_hrc, boxStyle.box_lines]}>
         <tag propData={addBtnParam}/>
         <tag propData={delBtnParam}/>
       </div>
@@ -197,7 +203,7 @@ export default defineComponent({
 
     const renderTable = () => {
       return <el-table
-        height='190'
+        height={this.height}
         data={this.nowShow}
         tableLayout='fixed'
         onSelectionChange={this.selectionChangeFn}

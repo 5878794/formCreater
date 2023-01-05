@@ -5,7 +5,7 @@ const setting = [
     label: 'test',
     key: 'a',
     value: 1,
-    style: 'width:410px;',
+    style: 'width:50%;',
     labelWidth: '',
     rule: 'required,max:group.z',
     disabled: '',
@@ -29,7 +29,7 @@ const setting = [
     key: 'b',
     value: '1',
     when: 'a=1',
-    style: '',
+    style: 'width:50%;',
     labelWidth: '',
     disabled: '',
     placeholder: '',
@@ -58,7 +58,7 @@ const setting = [
     key: 'f',
     when: 'b=1',
     value: '1671862422033',
-    style: 'width:300px;',
+    style: 'width:100%;',
     labelWidth: ''
   },
   {
@@ -78,6 +78,9 @@ const setting = [
   {
     type: 'addList',
     key: 'addList',
+    pagination: true,
+    height: 200,
+    pageSize: 5,
     value: [],
     style: 'width:600px;',
     inputs: [
@@ -87,7 +90,7 @@ const setting = [
         label: 'a',
         key: 'a',
         value: '1',
-        style: '',
+        style: 'width:33%;',
         labelWidth: ''
       },
       {
@@ -95,64 +98,65 @@ const setting = [
         label: 'b',
         key: 'b',
         value: '2',
-        style: '',
+        style: 'width:33%;',
         labelWidth: '',
         when: 'a=1'
       }
     ]
-  }
-  // {
-  //   type: 'repeat',
-  //   label: 'test',
-  //   key: 'repeat',
-  //   style: '',
-  //   repeatBy: 'a',
-  //   children: [
-  //     {
-  //       type: 'color',
-  //       label: 'color',
-  //       when: 'repeat[row].d=1',
-  //       key: 'c',
-  //       value: '#ccc',
-  //       style: '',
-  //       labelWidth: ''
-  //     },
-  //     {
-  //       type: 'text',
-  //       label: 'rep1.d',
-  //       key: 'd',
-  //       value: '1',
-  //       style: '',
-  //       labelWidth: ''
-  //     },
-  //     {
-  //       type: 'repeat',
-  //       label: 'test',
-  //       key: 'rep1',
-  //       repeatBy: 'repeat[row].d',
-  //       children: [
-  //         {
-  //           type: 'text',
-  //           label: 'rep2.j',
-  //           key: 'j',
-  //           value: '1',
-  //           style: '',
-  //           labelWidth: ''
-  //         },
-  //         {
-  //           type: 'text',
-  //           label: 'rep2.k',
-  //           when: 'repeat[row].rep1[row].j=1',
-  //           rule: 'max:repeat[row].rep1[row].j',
-  //           key: 'k',
-  //           value: '',
-  //           style: '',
-  //           labelWidth: ''
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
+  },
+  {
+    type: 'repeat',
+    label: 'test',
+    key: 'repeat',
+    style: 'width:100%;',
+    repeatBy: 'a',
+    children: [
+      {
+        type: 'color',
+        label: 'color',
+        when: 'repeat[row].d=1',
+        key: 'c',
+        value: '#ccc',
+        style: '',
+        labelWidth: ''
+      },
+      {
+        type: 'text',
+        label: 'rep1.d',
+        key: 'd',
+        value: '1',
+        style: '',
+        labelWidth: ''
+      },
+      {
+        type: 'repeat',
+        label: 'test',
+        key: 'rep1',
+        style: 'width:100%;',
+        repeatBy: 'repeat[row].d',
+        children: [
+          {
+            type: 'text',
+            label: 'rep2.j',
+            key: 'j',
+            value: '1',
+            style: 'width:100%;',
+            labelWidth: ''
+          },
+          {
+            type: 'text',
+            label: 'rep2.k',
+            when: 'repeat[row].rep1[row].j=1',
+            rule: 'max:repeat[row].rep1[row].j',
+            key: 'k',
+            value: '',
+            style: '',
+            labelWidth: ''
+          }
+        ]
+      }
+    ]
+  },
 
   // {
   //   type: 'dateTime',
@@ -225,35 +229,35 @@ const setting = [
   //     })
   //   }
   // },
-  // {
-  //   type: 'group',
-  //   label: 'group',
-  //   key: 'group',
-  //   style: 'width:100%;border:1px solid #ccc; padding:10px;',
-  //   children: [
-  //     {
-  //       type: 'text',
-  //       label: 'grou',
-  //       key: 'z',
-  //       value: 'z',
-  //       style: '',
-  //       labelWidth: '',
-  //       rule: 'number',
-  //       disabled: '',
-  //       placeholder: '',
-  //       unit: 'km',
-  //       unitOption: []
-  //     },
-  //     {
-  //       type: 'time',
-  //       label: 'test',
-  //       key: 'f',
-  //       value: '1671862422033',
-  //       style: '',
-  //       labelWidth: ''
-  //     }
-  //   ]
-  // }
+  {
+    type: 'group',
+    label: 'group',
+    key: 'group',
+    style: 'width:100%;border:1px solid #ccc; padding:10px;',
+    children: [
+      {
+        type: 'text',
+        label: 'grou',
+        key: 'z',
+        value: 'z',
+        style: '',
+        labelWidth: '',
+        rule: 'number',
+        disabled: '',
+        placeholder: '',
+        unit: 'km',
+        unitOption: []
+      },
+      {
+        type: 'time',
+        label: 'test',
+        key: 'f',
+        value: '1671862422033',
+        style: '',
+        labelWidth: ''
+      }
+    ]
+  }
 ]
 
 const data = {

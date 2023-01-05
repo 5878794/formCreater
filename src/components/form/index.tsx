@@ -15,6 +15,7 @@ import { formItemType } from '../input/input.type'
 import group from './group'
 import myRule from '../input/fn/rule'
 import reverseCheck from './fn/reverseCheck'
+import formStyle from './css/formStyle.module.scss'
 
 export default defineComponent({
   components: { group },
@@ -130,6 +131,7 @@ export default defineComponent({
   render () {
     return <ElConfigProvider locale={zhCn}>
       <group
+        class={[formStyle.main]}
         ref='main'
         formSetting={this.data}
         serverData={this.serverData}

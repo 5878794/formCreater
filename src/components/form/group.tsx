@@ -2,10 +2,11 @@ import { defineComponent, getCurrentInstance, inject } from 'vue'
 import myInput from '../input/index'
 import getKeyValue from './fn/getKeyValue'
 import formStyle from './css/formStyle.module.scss'
-import { formItemType } from '@/components/input/input.type'
+import { formItemType } from '../input/input.type'
 import repeatDom from './repeat'
 import addListDom from './addList'
 import checkRenderChange from './fn/checkRenderChange'
+import boxStyle from '../input/css/box.module.scss'
 
 export default defineComponent({
   name: 'bFrom',
@@ -129,6 +130,7 @@ export default defineComponent({
             style={item.style}
             id={item.__id__}
             data-key-lv={item.__keyLv__}
+            class={['__group__']}
           >
             {item.label && <p>{item.label}</p>}
             {/* 没有key的时候下面的子集当成平级元素渲染 */}
@@ -184,6 +186,9 @@ export default defineComponent({
               canMdf={this.canMdf}
               submitData={this.submitData}
               rowIndex={this.rowIndex}
+              pagination={item.pagination}
+              pageSize={item.pageSize}
+              height={item.height}
             />
           </div>
         }
@@ -213,7 +218,7 @@ export default defineComponent({
       })
     }
 
-    return <div class={[formStyle.form_item, '__form__']}>
+    return <div class={[formStyle.form_item, boxStyle.box_hlc, boxStyle.box_lines, '__form__']}>
       {createList(this.formSetting, this.serverData)}
     </div>
   }

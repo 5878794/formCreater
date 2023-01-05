@@ -57,6 +57,9 @@ export interface formItemType {
   isUploading?: boolean, // 内部使用  文件是否上传中
   buttonIcon?: string, // button的图标 @element-plus/icons-vue 中的名字
   buttonType?: string, // button的类型
+  pagination?: boolean, // addList 是否分页
+  pageSize?: number, // addList 分页数 默认10
+  height?: number, // addList的高度
 
   ruleFn?: (value: any, formData: formDataType) => checkResultType, // 验证函数
   setupFn?: (obj: any) => void, // 初始化时执行
