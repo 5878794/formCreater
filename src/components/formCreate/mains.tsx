@@ -1,7 +1,7 @@
 import { defineComponent, watch, ref } from 'vue'
 import appStyle from './css/index.module.scss'
 import boxStyle from './css/box.module.scss'
-import { dragInputType } from '@/components/formCreate/cache'
+import { dragInputType } from './cache'
 
 export default defineComponent({
   setup () {

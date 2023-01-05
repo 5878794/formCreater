@@ -5,7 +5,7 @@ import boxStyle from './css/box.module.scss'
 import bIcon from './publishCom/icon'
 import { inputs } from './setting'
 import { dragObjType } from './types'
-import { dragInputType } from '@/components/formCreate/cache'
+import { dragInputType } from './cache'
 
 export default defineComponent({
   setup (props, { expose }) {

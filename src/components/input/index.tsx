@@ -11,7 +11,7 @@ import { cloneDeep } from 'lodash'
 
 import init from './fn/init'
 import { ElFormItem } from 'element-plus'
-import boxStyle from '@/components/input/css/box.module.scss'
+import boxStyle from './css/box.module.scss'
 
 import setParamFn from './fn/setParamFn'
 import setValueFn from './fn/setValueFn'

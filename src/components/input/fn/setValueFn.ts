@@ -1,6 +1,6 @@
 // 设置值
 
-import { inputCacheType } from '@/components/input/input.type'
+import { inputCacheType } from '../input.type'
 
 export default function (cache: inputCacheType, showValChangeFn: any, dataChangeFn: any) {
   return function (val: any) {
