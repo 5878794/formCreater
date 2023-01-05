@@ -1,6 +1,17 @@
 ### form表单插件 （未正式测试！！！）
 
 ```
+依赖：   
+        @types/lodash 
+        @types/node
+        @types/webpack-env
+        lodash
+        sass
+        sass-loader
+        element-plus
+```
+
+```
     注意：serverData或formSetting改变整个form会重新生成
          要改内部属性用api修改
          设计初衷；所有表单处理在配置中配置
